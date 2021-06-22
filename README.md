@@ -1,7 +1,7 @@
 # Hyperledger Supply-Chain
 Food supply-chain is a network to connect participants across the food supply through a permissioned, permanent and shared record of food system data.
 
-!logo(alexandrebarros.com/global/hyperledger/supply-chain-03.png)
+![Logo](https://alexandrebarros.com/global/hyperledger/supply-chain-03.png?alt=hyperledger-supply-chain)
 
 
 ## About
