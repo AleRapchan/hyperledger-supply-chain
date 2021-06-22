@@ -26,11 +26,6 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 For support, email blockchain@alexandrebarros.com or join our Slack channel.
 
 ## Appendix
-
-- Web3.js: https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#contract-events
-- Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/
-- Metamask: https://docs.metamask.io/guide/
-- Remix: https://remix-ide.readthedocs.io/en/latest/
-- React: https://reactjs.org/docs/getting-started.html
-- Solidity: https://docs.soliditylang.org/en/v0.4.24/
-- Ganache: https://www.trufflesuite.com/docs/ganache/overview
+- Hyperledger Intro: https://hyperledger-fabric.readthedocs.io/en/latest/whatis.html
+- Hyperledger GitHub: https://github.com/hyperledger/fabric
+- Hyperledger Wiki: https://wiki.hyperledger.org/display/fabric
