@@ -7,14 +7,14 @@ Food supply-chain is a network to connect participants across the food supply th
 ## About the project
 Food supply chain is a Hyperledger blockchain based solution which solves the tracking and tracing of food products in the supply chain so that any product can be traced back to its roots. Building a food tracking system is an effective way to solve food safety issues. Blockchain is well suited for building product tracking systems because of the inherent immutability and consistency of stored data maintained by encryption and consent mechanisms. We propose to build a tracking system that will unite all suppliers, including food warehouses, food processors, and grocery stores, into one store. Create business correspondence with this chain to enable reliable food tracking without disrupting your food supply chain. Implementation and testing are carried out to evaluate the performance of the proposed monitor. The result is a customizable suite of solutions that can increase food safety and freshness, unlock supply chain efficiencies, minimize waste, enhance your brand’s reputation, and contribute directly to your bottom line. 
 
-## Top Factors considerated for the project
+## Top factors considerated for the project
 Think from all theses perspective:
 
-1. Security (protect API authentication, how to store data, API is the bottleneck)
-2. Operation (VM (under/over resources), Kubernets)
-3. Cost (how much to spend, Firewall, IDS, etc)
-4. Reliability (what if something goes down? Frontend and blockchain layers)
-5. Performance (kind of storage, vm configuration, index in CouchDB, etc)
+- Security (protect API authentication, how to store data, API is the bottleneck)
+- Operation (VM (under/over resources), Kubernets)
+- Cost (how much to spend, Firewall, IDS, etc)
+- Reliability (what if something goes down? Frontend and blockchain layers)
+- Performance (kind of storage, vm configuration, index in CouchDB, etc)
 
 ## Pillars of Blockchain
 
