@@ -282,9 +282,12 @@ sudo reboot
 - [IBM Blockchain plugin](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
 
 ## Apache CouchDB and Futon Web GUI
-After having seen CouchDB’s raw API, let’s work with Futon, the built-in administration interface. Futon provides full access to all of CouchDB’s features and makes it easy to work with some of the more complex ideas involved. With [Futon]((https://docs.couchdb.org/en/1.6.1/intro/futon.html)) we can create and destroy databases; view and edit documents; compose and run MapReduce views; and trigger replication between databases.
+After having seen CouchDB’s raw API, let’s work with Futon, the built-in administration interface. Futon provides full access to all of CouchDB’s features and makes it easy to work with some of the more complex ideas involved. With [Futon](https://docs.couchdb.org/en/1.6.1/intro/futon.html) we can create and destroy databases; view and edit documents; compose and run MapReduce views; and trigger replication between databases.
 
-To load Futon in your browser, visit: http://[your-ip-address/]/utils/
+To load Futon in your browser, visit: 
+```bash
+http://[your-ip-address/]/utils/
+```
 Remember to create a firewall rule in your cloud platform before that.
 
 ### More info:
