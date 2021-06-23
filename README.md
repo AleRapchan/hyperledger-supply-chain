@@ -219,7 +219,10 @@ $ sudo usermod -aG docker alexandrebarros $USER
 $ newgrp docker
 $ docker run hello-world
 $ docker ps
+$ docker ps -a
+$ docker images
 $ docker logs --tail 20 [processIdNumber]
+$ docker restart
 
 # Reboot if still got error
 $ reboot
