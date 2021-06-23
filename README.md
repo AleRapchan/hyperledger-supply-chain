@@ -307,7 +307,7 @@ For support, email blockchain@alexandrebarros.com or join our Slack channel.
 - Using Private Data in Fabric: https://hyperledger-fabric.readthedocs.io/en/release-2.2/private_data_tutorial.html
 
 ## Interesting Links
-[IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
-[Fair Trade International](https://www.fairtrade.net/)
+- [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
+- [Fair Trade International](https://www.fairtrade.net/)
 
 
