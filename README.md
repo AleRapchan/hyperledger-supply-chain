@@ -179,6 +179,22 @@ Update the commercial paper instance in the world state
 - Docker(https://www.docker.com/) is a computer program that performs operating-system-level virtualization, also known as Containerization.
 
 ## Prerequisites
+```Bash
+#Install the latest version of git if it is not already installed.
+$ sudo apt-get install git
+Install the latest version of cURL if it is not already installed.
+$ sudo apt-get install curl
+#Install the latest version of Docker if it is not already installed.
+sudo apt-get -y install docker-compose
+#Make sure the Docker daemon is running.
+sudo systemctl start docker
+#Optional: If you want the Docker daemon to start when the system starts, use the following:
+sudo systemctl enable docker
+#Add your user to the Docker group.
+sudo usermod -a -G docker <username>
+```
+
+More info:
 - [Docker](https://www.docker.com/products) - latest
 - [Docker Compose](https://docs.docker.com/compose/overview/) - latest
 - [NPM](https://www.npmjs.com/get-npm) - latest
@@ -187,6 +203,17 @@ Update the commercial paper instance in the world state
 - [Git client](https://git-scm.com/downloads) - latest
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
+
+## Cloud Environment Setup
+### Create key par in Mac
+```bash
+ssh-keygen -t rsa
+cat /home/username/.ssh/id rsa.pub
+```
+
+- Create an instance in Google Cloud Platform
+- Install Pony SSH plugin in VSC 
+
 
 ## Setup
 ```bash
