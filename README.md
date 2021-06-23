@@ -179,6 +179,8 @@ Update the commercial paper instance in the world state
 - Docker(https://www.docker.com/) is a computer program that performs operating-system-level virtualization, also known as Containerization.
 
 ## Prerequisites
+The following prerequisites are required to run a Docker-based Fabric test network on your local machine.
+
 ```Bash
 #Install the latest version of git if it is not already installed.
 $ sudo apt-get install git
@@ -206,6 +208,7 @@ More info:
 - [nvm](https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
 - [Node.js](https://nodejs.org/en/download/) - Node v8.9.x
 - [Git client](https://git-scm.com/downloads) - latest
+- [HyperLedger Read the Docs] (https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html)
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
 
