@@ -209,7 +209,7 @@ sudo apt-get install jq
 
 ```
 
-### Fabric Samples
+### Install Fabric and Fabric Samples
 Clone from Github Hyperledger Fabric Samples
 ```bash
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
@@ -249,10 +249,14 @@ cat /home/username/.ssh/id rsa.pub
 - Install Pony SSH plugin in VSC 
 
 
-## Setup
+## Install Fabric SDK for NodeJS
+The Hyperledger Fabric SDK allows applications to interact with a Fabric blockchain network. It provides a simple API to submit transactions to a ledger or query the contents of a ledger with minimal code.
+
+The client API is published to the npm registry in the fabric-network package.
 ```bash
 npm install fabric-network
 ```
+Hyperledger Fabric SDK for Node.js
 
 ## Authors
 
