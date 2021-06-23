@@ -214,6 +214,18 @@ Clone from Github Hyperledger Fabric Samples
 ```bash
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
 ```
+### Setting up Docker
+```bash
+$ sudo groupadd docker
+$ sudo usermod -aG docker alexandrebarros $USER
+$ newgrp docker
+$ docker run hello-world
+$ docker ps
+$ docker logs --tail 20 [processIdNumber]
+
+# Reboot if still got error
+$ reboot
+```
 
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
