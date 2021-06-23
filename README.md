@@ -334,6 +334,8 @@ These are the default user and password. Change it in your first access:
 - Username: admin
 - Password: adminpw
 
+More information about [Fauxton](https://couchdb.apache.org/fauxton-visual-guide/index.html) can be found in the link.
+
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
 - [Docker Compose](https://docs.docker.com/compose/overview/) - latest
