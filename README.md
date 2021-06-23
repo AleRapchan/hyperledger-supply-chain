@@ -240,7 +240,7 @@ The client API is published to the npm registry in the fabric-network package.
 npm install fabric-network
 ```
 
-### Install Fabric and Fabric Samples
+### Install Docker Images, Install Fabric Tools and Fabric Samples
 Clone from Github Hyperledger Fabric Samples.
 1. Run Docker on your machine
 2. Create project folder and cd into it
