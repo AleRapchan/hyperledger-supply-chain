@@ -13,6 +13,22 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 ## Objective
 Bring transparency to the food supply chain with Hyperledger Fabric.
 
+## Featured technologies
+- Nodejs(https://www.nodejs.org/) is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.
+- ReactJS is a progressive framework for building user interfaces.
+- Bootstrap is a free and open-source front-end Web framework. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions.
+- Docker(https://www.docker.com/) is a computer program that performs operating-system-level virtualization, also known as Containerization.
+
+## Prerequisites
+- Docker(https://www.docker.com/products) - latest
+- Docker Compose(https://docs.docker.com/compose/overview/) - latest
+- NPM(https://www.npmjs.com/get-npm) - latest
+- nvm(https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
+- Node.js(https://nodejs.org/en/download/) - Node v8.9.x
+- Git client(https://git-scm.com/downloads) - latest
+
+You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
+
 ## Authors
 
 - [@AleRapchan](https://www.github.com/AleRapchan)
