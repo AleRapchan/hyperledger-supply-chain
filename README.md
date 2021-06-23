@@ -182,14 +182,19 @@ Update the commercial paper instance in the world state
 ```Bash
 #Install the latest version of git if it is not already installed.
 $ sudo apt-get install git
-Install the latest version of cURL if it is not already installed.
+
+#Install the latest version of cURL if it is not already installed.
 $ sudo apt-get install curl
+
 #Install the latest version of Docker if it is not already installed.
 sudo apt-get -y install docker-compose
+
 #Make sure the Docker daemon is running.
 sudo systemctl start docker
+
 #Optional: If you want the Docker daemon to start when the system starts, use the following:
 sudo systemctl enable docker
+
 #Add your user to the Docker group.
 sudo usermod -a -G docker <username>
 ```
