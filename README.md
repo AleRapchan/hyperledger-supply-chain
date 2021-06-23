@@ -275,15 +275,18 @@ cd /fabric-samples/test-network/
 - Use this to generate cryptographic and network artefacts, bring up the network & run sample scenario
 
 ```bash
+# before starting, we need to set a path to the binary tools:
+export PATH=../bin:$PATH
+
 cd fabric-samples/first-network
 
+# to create the cryptographic and channel artefacts
 sudo ./byfn.sh generate
 
-#Now bring the blockchain network up
-#If everything worked, then you successfully !
+# to bring up the network and run a scenario using chaincode
 sudo ./byfn.sh up
 
-#Let's bring it down for now.
+# to stop the network and clean up the system
 sudo ./byfn.sh down
 ```
 
