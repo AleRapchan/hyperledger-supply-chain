@@ -268,7 +268,7 @@ sudo usermod -aG sudo,adm demo
 sudo -i
 #find passwordauthentication "no" change to "yes"
 vim /etc/ssh/sshd_config
-sudo apt update 12:10
+sudo apt update
 sudo apt -y install wget
 hostnamectl
 wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
