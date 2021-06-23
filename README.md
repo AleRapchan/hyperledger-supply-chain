@@ -68,34 +68,43 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 
 ## Model definition for the asset
 ```JS
-  const supplyChainModal = {
-            policyNumber: String,
-            claimStatus: State || Number,
-            carInfo: {
-                make: String,
-                model: String,
-                year: String,
-                registration: String,
-                licensePlateNumber: String
-            },
-            accidentDetails: {
-                driverInfo: [{
-                    name: String,
-                    licenseNumber: String || null,
-                    insuranceCompanyName: String
-                }],
-                investigationOfficer: {
-                    name: String,
-                    badgeNumber: String
-                },
-                date: Date,
-                location: String,
-                passengerCount: Number,
-                injuryDetails: String,
-                vehicleDamageDetails: String,
-                driverDescriptionOfAccident: [String] || null,
-            }
-        };
+ const productModal = {
+	originalProductIds: [],
+	id: Number,
+	barcode: String,
+	name: String,
+	placeOfOrigin": String,
+	produceDate: Date,
+	expirationDate: Date,
+	quanitity: Number,
+	type: String,
+	batchInfo: {
+		quantity: Number,
+	    size: Number,
+	    weight: Number
+	},
+	price: Number,
+	category: String,
+	variety: String,
+	misc: {},
+	rating: Number,
+	tracking: {
+		source: {
+			sourceId: Number,
+			source: String,
+			sourceAddress: String,				
+		},
+		destination: {
+			destinationId: Number,
+			destination: String,
+			destinationAddress: String,
+		},
+		shipmentDate: Date,
+		arrivalDate: Date,
+		expectedDeliveryDate: Date,
+		status: String
+	}
+};
 ```
 
 ## Architecture flow
