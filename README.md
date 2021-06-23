@@ -322,9 +322,14 @@ After having seen CouchDB’s raw API, let’s work with Futon, the built-in adm
 
 To load Futon in your browser, visit: 
 ```bash
-http://[your-ip-address/]/utils/
+http://[your-ip-address/]:5984/utils/
 ```
 Remember to create a firewall rule in your cloud platform before that.
+1. VPC network/ Firewall / Create a firewall rule
+2. Target: All instances
+3. Source: 0.0.0.0/0
+4. Specified protocols and ports: tcp : 5984
+
 These are the default user and password. Change it in your first access:
 - Username: admin
 - Password: adminpw
