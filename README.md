@@ -260,6 +260,22 @@ cd /fabric-samples/fabcar
 ~/fabric-samples/fabcar$ ./startFabric.sh javascript
 ```
 
+🐧 Create Linux VM and connect GUI remotly
+```bash
+sudo apt-get install ubuntu-desktop
+sudo adduser demo
+sudo usermod -aG sudo,adm demo
+sudo -i
+#find passwordauthentication "no" change to "yes"
+vim /etc/ssh/sshd_config
+sudo apt update 12:10
+sudo apt -y install wget
+hostnamectl
+wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
+sudo dpkg -i nomachine_7.1.3_1_amd64.deb
+sudo reboot
+```
+
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
 - [Docker Compose](https://docs.docker.com/compose/overview/) - latest
