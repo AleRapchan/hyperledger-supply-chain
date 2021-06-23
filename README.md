@@ -182,6 +182,10 @@ Update the commercial paper instance in the world state
 The following prerequisites are required to run a Docker-based Fabric test network on your local machine.
 
 ```Bash
+#Update your Linux system
+$ apt-get update
+$ apt-get upgrade
+
 #Install the latest version of git if it is not already installed.
 $ sudo apt-get install git
 
@@ -189,19 +193,29 @@ $ sudo apt-get install git
 $ sudo apt-get install curl
 
 #Install the latest version of Docker if it is not already installed.
-sudo apt-get -y install docker-compose
+$ sudo apt-get -y install docker-compose
 
 #Make sure the Docker daemon is running.
-sudo systemctl start docker
+$ sudo systemctl start docker
 
 #Optional: If you want the Docker daemon to start when the system starts, use the following:
-sudo systemctl enable docker
+$ sudo systemctl enable docker
 
 #Add your user to the Docker group.
-sudo usermod -a -G docker <username>
+$ sudo usermod -a -G docker <username>
+
+# Optional: Install the latest version of jq if it is not already installed (only required for the tutorials related to channel configuration transactions).
+sudo apt-get install jq
+
 ```
 
-More info:
+### Fabric Samples
+Clone from Github Hyperledger Fabric Samples
+```bash
+curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
+```
+
+### More info:
 - [Docker](https://www.docker.com/products) - latest
 - [Docker Compose](https://docs.docker.com/compose/overview/) - latest
 - [NPM](https://www.npmjs.com/get-npm) - latest
