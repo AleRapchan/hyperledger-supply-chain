@@ -207,22 +207,11 @@ $ sudo usermod -a -G docker <username>
 # Optional: Install the latest version of jq if it is not already installed (only required for the tutorials related to channel configuration transactions).
 sudo apt-get install jq
 
+# Install Node JS
+$ sudo apt-get install nodejs
+$ npm
+
 ```
-
-### Install Fabric and Fabric Samples
-Clone from Github Hyperledger Fabric Samples
-```bash
-curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
-```
-
-### Install Fabric SDK for NodeJS
-The Hyperledger Fabric SDK allows applications to interact with a Fabric blockchain network. It provides a simple API to submit transactions to a ledger or query the contents of a ledger with minimal code.
-
-The client API is published to the npm registry in the fabric-network package.
-```bash
-npm install fabric-network
-```
-
 ### Setting up Docker
 ```bash
 $ sudo groupadd docker
@@ -236,6 +225,33 @@ $ docker logs --tail 20 [processIdNumber]
 $ reboot
 ```
 
+### Install Fabric SDK for NodeJS
+The Hyperledger Fabric SDK allows applications to interact with a Fabric blockchain network. It provides a simple API to submit transactions to a ledger or query the contents of a ledger with minimal code.
+
+The client API is published to the npm registry in the fabric-network package.
+```bash
+npm install fabric-network
+```
+
+### Install Fabric and Fabric Samples
+Clone from Github Hyperledger Fabric Samples
+```bash
+curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
+```
+
+
+### Using the Fabric test network
+```bash
+cd /fabric-samples/test-network/
+./test-network/network.sh down
+./network.sh up -s couchdb -ca -verbose
+```
+
+Interact with the network
+```bash
+cd /fabric-samples/fabcar
+~/fabric-samples/fabcar$ ./startFabric.sh javascript
+```
 
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
@@ -245,6 +261,7 @@ $ reboot
 - [Node.js](https://nodejs.org/en/download/) - Node v8.9.x
 - [Git client](https://git-scm.com/downloads) - latest
 - [HyperLedger Read the Docs](https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html)
+- [HyperLedger Test Network](https://hyperledger-fabric.readthedocs.io/en/release-2.2/test_network.html)
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
 
