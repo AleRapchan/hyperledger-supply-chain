@@ -23,6 +23,21 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 ## State Machine
 ![Logo](https://alexandrebarros.com/global/hyperledger/StateMachine.png?alt=hyperledger-state-machine)
 
+## Physical Asset in the Network
+- Food (Apples, etc)
+    
+## Possible attributes associated with the Asset
+- Cost
+- Manufacture
+- PackageSize 
+- Barcode
+- Name
+- PlaceOfOrigin
+- ProduceDate
+- ExpirationDate
+- Quanitity
+- Type
+
 ## Possible Smart Contracts for the Asset
 Issue
 Creates a new drug instance
