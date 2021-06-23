@@ -262,11 +262,29 @@ Now you'll have:
 - Docker Images downloaded
 
 
-### Using the Fabric test network
+### Create your first Fabric test network
 ```bash
 cd /fabric-samples/test-network/
 ./network.sh down
 ./network.sh up -s couchdb -ca -verbose
+```
+
+- Change into the first-network directory and run the generate script that will create the certificates and keys for the entities that are going to exist on our blockchain.
+- This will also create the genesis block, the first block on the blockchain, among other things.
+- Main script: [byfn.sh](http://byfn.sh/) (well documented and worth reading through)
+- Use this to generate cryptographic and network artefacts, bring up the network & run sample scenario
+
+```bash
+cd fabric-samples/first-network
+
+sudo ./byfn.sh generate
+
+#Now bring the blockchain network up
+#If everything worked, then you successfully !
+sudo ./byfn.sh up
+
+#Let's bring it down for now.
+sudo ./byfn.sh down
 ```
 
 Interact with the network
