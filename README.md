@@ -243,7 +243,7 @@ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
 ### Using the Fabric test network
 ```bash
 cd /fabric-samples/test-network/
-./test-network/network.sh down
+./network.sh down
 ./network.sh up -s couchdb -ca -verbose
 ```
 
