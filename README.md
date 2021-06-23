@@ -26,42 +26,41 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 ## Product Structure
 ```JSON
 {
-	"product": {
-		"originalProductIds": [],
-		"id": "123",
-		"barcode": "1321312411",
-		"name": "Potatoes",
-		"placeOfOrigin": "Spain, Toledo",
-		"produceDate": "2021-04-23T18:25:43.511Z",
-		"expirationDate": "2022-04-23T18:25:43.511Z",
-		"quanitity": "5",
-		"type": "kg",
-		"batchInfo": {
-			"quantity": "1000",
-		    "size": "",
-		    "weight": "",
+"product": {
+	"originalProductIds": [],
+	"id": "123",
+	"barcode": "1321312411",
+	"name": "Potatoes",
+	"placeOfOrigin": "Spain, Toledo",
+	"produceDate": "2021-04-23T18:25:43.511Z",
+	"expirationDate": "2022-04-23T18:25:43.511Z",
+	"quanitity": "5",
+	"type": "kg",
+	"batchInfo": {
+		"quantity": "1000",
+	    "size": "",
+	    "weight": "",
+	},
+	"price": "1100.25",
+	"category": "Vegetables",
+	"variety": "Yellow",
+	"misc": {},
+	"rating": "5",
+	"tracking": {
+		"source": {
+			"sourceId": 1,
+			"source": "The Farm, address",
+			"sourceAddress": "Main St.",				
 		},
-		"price": "1100.25",
-		"category": "Vegetables",
-		"variety": "Yellow",
-		"misc": {},
-		"rating": "5",
-		"tracking": {
-			"source": {
-				"sourceId": 1,
-				"source": "The Farm, address",
-				"sourceAddress": "Main St.",				
-			},
-			"destination": {
-				"destinationId": 5,
-				"destination": "Manufacturing Plant",
-				"destinationAddress": "Bay St.",
-			},
-			"shipmentDate": "",
-			"arrivalDate": "",
-			"expectedDeliveryDate": "",
-			"status": "Picked"
-		}
+		"destination": {
+			"destinationId": 5,
+			"destination": "Manufacturing Plant",
+			"destinationAddress": "Bay St.",
+		},
+		"shipmentDate": "",
+		"arrivalDate": "",
+		"expectedDeliveryDate": "",
+		"status": "Picked"
 	}
 }
 ```
@@ -80,8 +79,8 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 	type: String,
 	batchInfo: {
 		quantity: Number,
-	    size: Number,
-	    weight: Number
+	    	size: Number,
+	    	weight: Number
 	},
 	price: Number,
 	category: String,
