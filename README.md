@@ -20,6 +20,11 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 ## Objective
 Bring transparency to the food supply chain with Hyperledger Fabric.
 
+## State Machine
+![Logo](https://alexandrebarros.com/global/hyperledger/StateMachine.png?alt=hyperledger-state-machine)
+
+## Model definition for the asset
+
 ## Architecture flow
 1. The blockchain operator creates a Docker Kubernetes Service.
 2. Users creates a Hyperledger Fabric network on a Docker Kubernetes Service, and the operator installs and instantiates the smart contract on the network.
