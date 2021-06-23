@@ -14,11 +14,11 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 Bring transparency to the food supply chain with Hyperledger Fabric.
 
 ## Architecture flow
-1 - The blockchain operator creates a Docker Kubernetes Service.
-2 - Users creates a Hyperledger Fabric network on a Docker Kubernetes Service, and the operator installs and instantiates the smart contract on the network.
-3 - The Node.js application server uses the Fabric SDK to interact with the deployed network on the local or cloud platform where Hyperledger is.
-4 - The React UI uses the Node.js application API to interact and submit transactions to the network.
-5 - The user interacts with the supply chain application web interface to update and query the blockchain ledger and state.
+1. The blockchain operator creates a Docker Kubernetes Service.
+2. Users creates a Hyperledger Fabric network on a Docker Kubernetes Service, and the operator installs and instantiates the smart contract on the network.
+3. The Node.js application server uses the Fabric SDK to interact with the deployed network on the local or cloud platform where Hyperledger is.
+4. The React UI uses the Node.js application API to interact and submit transactions to the network.
+5. The user interacts with the supply chain application web interface to update and query the blockchain ledger and state.
 
 ## Featured technologies
 - Nodejs(https://www.nodejs.org/) is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.
@@ -27,12 +27,12 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 - Docker(https://www.docker.com/) is a computer program that performs operating-system-level virtualization, also known as Containerization.
 
 ## Prerequisites
-- Docker(https://www.docker.com/products) - latest
-- Docker Compose(https://docs.docker.com/compose/overview/) - latest
-- NPM(https://www.npmjs.com/get-npm) - latest
-- nvm(https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
-- Node.js(https://nodejs.org/en/download/) - Node v8.9.x
-- Git client(https://git-scm.com/downloads) - latest
+- [Docker](https://www.docker.com/products) - latest
+- [Docker] Compose(https://docs.docker.com/compose/overview/) - latest
+- [NPM](https://www.npmjs.com/get-npm) - latest
+- [nvm](https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
+- [Node.js](https://nodejs.org/en/download/) - Node v8.9.x
+- [Git] client(https://git-scm.com/downloads) - latest
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
 
