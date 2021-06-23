@@ -67,7 +67,7 @@ The paper must not have already been redeemed
 The issuer’s cash balance is decremented by the redemption value The owner’s cash balance is incremented by the redemption value The paper is marked as redeemed
 Update the commercial paper instance in the world state
 
-## Product Structure
+## Instance Description for the Asset
 ```JSON
 {
 "product": {
