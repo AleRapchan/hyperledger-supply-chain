@@ -23,6 +23,50 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 ## State Machine
 ![Logo](https://alexandrebarros.com/global/hyperledger/StateMachine.png?alt=hyperledger-state-machine)
 
+## Possible Smart Contracts for the Asset
+Issue
+Creates a new drug instance
+Inputs: 
+- DrugName
+- Cost
+- Owner
+- Manufacture
+- PackageSize
+- FabricationDate
+- ExpirationDate
+- Diseases
+Outputs: None
+Design: Once created, the new asset’s details are stored in the world state
+
+Buy
+Transfers ownership of a drug instance
+Inputs: 
+- issuer, 
+- ID, 
+- current owner, 
+- new owner, 
+- price, 
+- issue date/time, 
+- face value
+Outputs: None
+Design:
+The seller’s cash balance is incremented by the price 
+The buyer’s cash balance is decremented by the price 
+The buyer becomes the owner of the drug 
+Update the drug instance in the world state
+
+Redeem
+Transfers cash matching the redemption value to the current owner
+Inputs: 
+- issuer, 
+- ID, 
+- current owner, 
+- redemption date/time Outputs: None
+Design:
+The paper must not have already been redeemed
+The issuer’s cash balance is decremented by the redemption value The owner’s cash balance is incremented by the redemption value The paper is marked as redeemed
+Update the commercial paper instance in the world state
+
 ## Product Structure
 ```JSON
 {
@@ -128,6 +172,11 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 - [Git client](https://git-scm.com/downloads) - latest
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
+
+## Setup
+```bash
+npm install fabric-network
+```
 
 ## Authors
 
