@@ -38,10 +38,12 @@ You could use your local docker containers or create a cloud account in IBM Clou
 
 ## Authors
 
-- [@AleRapchan](https://www.github.com/AleRapchan)
-- [@Alexei Pancratov](https://github.com/alexeipancratov)
-- [@Michael Francis Jerome Victor](https://github.com/Mike-64)
-- [@Dhruvam Patel](https://github.com/dhruvampatel)
+Name  | Git Hub | LinkedIn
+------------- | ------------- | -------------
+Alexandre Rapchan B. Barros  | [@AleRapchan](https://www.github.com/AleRapchan) | [Alexandre-rapchan](https://www.linkedin.com/in/alexandre-rapchan/) |
+Alexei Pancratov |  [@AlexeiPancratov](https://github.com/alexeipancratov) |  Linkedin link |
+Michael Francis Jerome Victor | [@Mike-64](https://github.com/Mike-64)| Linkedin link |
+Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link \|
 
 
 ## Support
