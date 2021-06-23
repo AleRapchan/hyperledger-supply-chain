@@ -289,6 +289,9 @@ To load Futon in your browser, visit:
 http://[your-ip-address/]/utils/
 ```
 Remember to create a firewall rule in your cloud platform before that.
+These are the default user and password. Change it in your first access:
+- Username: admin
+- Password: adminpw
 
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
