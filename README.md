@@ -13,6 +13,13 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 ## Objective
 Bring transparency to the food supply chain with Hyperledger Fabric.
 
+## Architecture flow
+1 - The blockchain operator creates a Docker Kubernetes Service.
+2 - Users creates a Hyperledger Fabric network on a Docker Kubernetes Service, and the operator installs and instantiates the smart contract on the network.
+3 - The Node.js application server uses the Fabric SDK to interact with the deployed network on the local or cloud platform where Hyperledger is.
+4 - The React UI uses the Node.js application API to interact and submit transactions to the network.
+5 - The user interacts with the supply chain application web interface to update and query the blockchain ledger and state.
+
 ## Featured technologies
 - Nodejs(https://www.nodejs.org/) is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.
 - ReactJS is a progressive framework for building user interfaces.
