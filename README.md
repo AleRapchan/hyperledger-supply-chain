@@ -260,7 +260,7 @@ cd /fabric-samples/fabcar
 ~/fabric-samples/fabcar$ ./startFabric.sh javascript
 ```
 
-🐧 Create Linux VM and connect GUI remotly
+### 🐧 Create Linux VM and connect GUI remotly
 ```bash
 sudo apt-get install ubuntu-desktop
 sudo adduser demo
@@ -275,6 +275,12 @@ wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.d
 sudo dpkg -i nomachine_7.1.3_1_amd64.deb
 sudo reboot
 ```
+
+### Install IBM Blockchain Platform VS Code extension
+ The IBM Blockchain Platform Developer Tools can be installed as a VS Code extension on your local system to make easier your development:
+- [Microsoft Visual Studio Code](https://code.visualstudio.com/)
+- [IBM Blockchain plugin](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
+
 
 ### More info:
 - [Docker](https://www.docker.com/products) - latest
