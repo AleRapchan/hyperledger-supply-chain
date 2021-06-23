@@ -241,10 +241,25 @@ npm install fabric-network
 ```
 
 ### Install Fabric and Fabric Samples
-Clone from Github Hyperledger Fabric Samples
+Clone from Github Hyperledger Fabric Samples.
+1. Run Docker on your machine
+2. Create project folder and cd into it
+```bash
+mkdir new-network
+cd new-network
+```
+3. Run script:
 ```bash
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
+
+# sudo curl -sSL https://goo.gl/6wtTN5 | sudo bash -s 1.1.0
+# curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s 1.1.0
+# sudo chmod 777 -R fabric-samples
 ```
+Now you'll have:
+- Fabric-samples downloaded
+- Binary tools installed in /bin
+- Docker Images downloaded
 
 
 ### Using the Fabric test network
