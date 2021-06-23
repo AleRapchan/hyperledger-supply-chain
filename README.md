@@ -208,7 +208,7 @@ More info:
 - [nvm](https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
 - [Node.js](https://nodejs.org/en/download/) - Node v8.9.x
 - [Git client](https://git-scm.com/downloads) - latest
-- [HyperLedger Read the Docs] (https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html)
+- [HyperLedger Read the Docs](https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html)
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
 
