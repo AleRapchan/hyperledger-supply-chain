@@ -28,11 +28,11 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 
 ## Prerequisites
 - [Docker](https://www.docker.com/products) - latest
-- [Docker] Compose(https://docs.docker.com/compose/overview/) - latest
+- [Docker Compose](https://docs.docker.com/compose/overview/) - latest
 - [NPM](https://www.npmjs.com/get-npm) - latest
 - [nvm](https://github.com/AleRapchan/private-data-collections-on-fabric/blob/master) - latest
 - [Node.js](https://nodejs.org/en/download/) - Node v8.9.x
-- [Git] client(https://git-scm.com/downloads) - latest
+- [Git client](https://git-scm.com/downloads) - latest
 
 You could use your local docker containers or create a cloud account in IBM Cloud, Azure, AWS or Google Cloud Platform.
 
@@ -43,7 +43,7 @@ Name  | Git Hub | LinkedIn
 Alexandre Rapchan B. Barros  | [@AleRapchan](https://www.github.com/AleRapchan) | [Alexandre-rapchan](https://www.linkedin.com/in/alexandre-rapchan/) |
 Alexei Pancratov |  [@AlexeiPancratov](https://github.com/alexeipancratov) |  Linkedin link |
 Michael Francis Jerome Victor | [@Mike-64](https://github.com/Mike-64)| Linkedin link |
-Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link \|
+Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link |
 
 
 ## Support
