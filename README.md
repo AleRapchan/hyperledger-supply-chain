@@ -213,6 +213,8 @@ Update the commercial paper instance in the world state
 	}
 }
 ```
+## Diagram
+![Logo](https://alexandrebarros.com/global/hyperledger/Diagram.jpeg?alt=hyperledger-diagram)
 
 ## Architecture flow
 1. The blockchain operator creates a Docker Kubernetes Service.
