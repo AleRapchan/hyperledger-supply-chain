@@ -131,6 +131,47 @@ The paper must not have already been redeemed
 The issuer’s cash balance is decremented by the redemption value The owner’s cash balance is incremented by the redemption value The paper is marked as redeemed
 Update the commercial paper instance in the world state
 
+## Model definition for the asset
+```JS
+ const productModal = {
+	originalProductIds: [],
+	id: Number,
+	barcode: String,
+	name: String,
+	placeOfOrigin": String,
+	produceDate: Date,
+	expirationDate: Date,
+	quanitity: Number,
+	type: String,
+	batchInfo: {
+		quantity: Number,
+	    	size: Number,
+	    	weight: Number
+	},
+	price: Number,
+	category: String,
+	variety: String,
+	misc: {},
+	rating: Number,
+	tracking: {
+		source: {
+			sourceId: Number,
+			source: String,
+			sourceAddress: String,				
+		},
+		destination: {
+			destinationId: Number,
+			destination: String,
+			destinationAddress: String,
+		},
+		shipmentDate: Date,
+		arrivalDate: Date,
+		expectedDeliveryDate: Date,
+		status: String
+	}
+};
+```
+
 ## Instance Description for the Asset
 ```JSON
 {
@@ -171,47 +212,6 @@ Update the commercial paper instance in the world state
 		"status": "Picked"
 	}
 }
-```
-
-## Model definition for the asset
-```JS
- const productModal = {
-	originalProductIds: [],
-	id: Number,
-	barcode: String,
-	name: String,
-	placeOfOrigin": String,
-	produceDate: Date,
-	expirationDate: Date,
-	quanitity: Number,
-	type: String,
-	batchInfo: {
-		quantity: Number,
-	    	size: Number,
-	    	weight: Number
-	},
-	price: Number,
-	category: String,
-	variety: String,
-	misc: {},
-	rating: Number,
-	tracking: {
-		source: {
-			sourceId: Number,
-			source: String,
-			sourceAddress: String,				
-		},
-		destination: {
-			destinationId: Number,
-			destination: String,
-			destinationAddress: String,
-		},
-		shipmentDate: Date,
-		arrivalDate: Date,
-		expectedDeliveryDate: Date,
-		status: String
-	}
-};
 ```
 
 ## Architecture flow
