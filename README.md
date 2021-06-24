@@ -74,18 +74,18 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
     
 ## Possible attributes associated with the Asset
 	
-Field  |  Description
-------------- | -------------
-Cost  |  Cost of the product
-Manufacture  |  Name of the manufacture
-PackageSize   |  THe size of the package
-Barcode  |  The barcode
-Name  |  Name of the product
-PlaceOfOrigin  |  Place of Origin
-ProduceDate  |  Date that the product was produced
-ExpirationDate  |  Date that the product will expire
-Quantity  |  Quantity of products produced
-Type  |  Type of the product
+Field  |  Type  |  Description
+------------- | ------------- | -------------
+Cost  |  Number  |  Cost of the product
+Manufacture  |  String  |    Name of the manufacture
+PackageSize   |  Number  |    THe size of the package
+Barcode  |  Number  |  The barcode
+Name  |  String    |  Name of the product
+PlaceOfOrigin  |  String  |  Place of Origin
+ProduceDate  |  Date  |  Date that the product was produced
+ExpirationDate  |  Date  |  Date that the product will expire
+Quantity  |  Number  |  Quantity of products produced
+Type  |  String  |  Type of the product
 
 ## Possible Smart Contracts for the Asset
 Issue
