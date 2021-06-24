@@ -27,7 +27,7 @@ Think from all theses perspective:
 Hyperledger is an open source collaborative effort created to advance cross-industry blockchain technologies. It is a global collaboration including leaders in banking, finance, Internet of Things, manufacturing, supply chain, and technology. The Linux Foundation hosts Hyperledger under the foundation. To learn more, visit https://www.hyperledger.org/
 
 ## Hyperledger Fabric (HLF) Components
-![Logo](https://alexandrebarros.com/global/hyperledger/HLF-Components.png?alt=hyperledger-components)
+![Logo](https://alexandrebarros.com/global/hyperledger/Components.png?alt=hyperledger-components)
 
 ## Hyperledger Fabric Architecture
 ![Logo](https://alexandrebarros.com/global/hyperledger/Architecture.png?alt=hyperledger-architecture)
