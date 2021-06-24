@@ -38,6 +38,9 @@ Food supply-chain is a network to connect participants across the food supply th
 ## About the project
 Food supply chain is a Hyperledger blockchain based solution which solves the tracking and tracing of food products in the supply chain so that any product can be traced back to its roots. Building a food tracking system is an effective way to solve food safety issues. Blockchain is well suited for building product tracking systems because of the inherent immutability and consistency of stored data maintained by encryption and consent mechanisms. We propose to build a tracking system that will unite all suppliers, including food warehouses, food processors, and grocery stores, into one store. Create business correspondence with this chain to enable reliable food tracking without disrupting your food supply chain. Implementation and testing are carried out to evaluate the performance of the proposed monitor. The result is a customizable suite of solutions that can increase food safety and freshness, unlock supply chain efficiencies, minimize waste, enhance your brand’s reputation, and contribute directly to your bottom line. 
 
+## Objective
+Bring transparency to the food supply chain with Hyperledger Fabric.
+
 ## Top factors considerated for the project
 Think from all theses perspective:
 
@@ -47,6 +50,9 @@ Think from all theses perspective:
 - Reliability (what if something goes down? Frontend and blockchain layers)
 - Performance (kind of storage, vm configuration, index in CouchDB, etc)
 
+# About Hyperledger
+Hyperledger is an open source collaborative effort created to advance cross-industry blockchain technologies. It is a global collaboration including leaders in banking, finance, Internet of Things, manufacturing, supply chain, and technology. The Linux Foundation hosts Hyperledger under the foundation. To learn more, visit https://www.hyperledger.org/
+
 ## Pillars of Blockchain
 
 - CONSENSUS - Participants will collectively agree that each transaction is valid and the order of the transaction in relation to others. (ex: 2 of 6 or 3 of 6)
@@ -54,17 +60,13 @@ Think from all theses perspective:
 - IMMUTABILITY - No participant can tamper with a transaction once it's agreed.
 - FINALITY - Once a transaction is committed, it cannot be reversed, in other words, the data cannot be rolled back to the previous state. If a transaction was in error then a NEW transaction must be used to reverse the error, with both transactions visible.
 
-## About Hyperledger
-Hyperledger is an open source collaborative effort created to advance cross-industry blockchain technologies. It is a global collaboration including leaders in banking, finance, Internet of Things, manufacturing, supply chain, and technology. The Linux Foundation hosts Hyperledger under the foundation. To learn more, visit https://www.hyperledger.org/
-
 ## Hyperledger Fabric (HLF) Components
 ![Logo](https://alexandrebarros.com/global/hyperledger/Components.png?alt=hyperledger-components)
 
 ## Hyperledger Fabric Architecture
 ![Logo](https://alexandrebarros.com/global/hyperledger/Architecture.png?alt=hyperledger-architecture)
 
-## Objective
-Bring transparency to the food supply chain with Hyperledger Fabric.
+# Food Supply Chains Details
 
 ## State Machine
 ![Logo](https://alexandrebarros.com/global/hyperledger/StateMachine.png?alt=hyperledger-state-machine)
@@ -222,6 +224,8 @@ Update the commercial paper instance in the world state
 3. The Node.js application server uses the Fabric SDK to interact with the deployed network on the local or cloud platform where Hyperledger is.
 4. The React UI uses the Node.js application API to interact and submit transactions to the network.
 5. The user interacts with the supply chain application web interface to update and query the blockchain ledger and state.
+
+# Implementation
 
 ## Featured technologies
 - Nodejs(https://www.nodejs.org/) is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.
@@ -406,6 +410,7 @@ cat /home/username/.ssh/id rsa.pub
 - Install Pony SSH plugin in VSC 
 
 
+# Contact
 
 ## Authors
 
@@ -415,7 +420,6 @@ Alexandre Rapchan B. Barros  | [@AleRapchan](https://www.github.com/AleRapchan) 
 Alexei Pancratov |  [@AlexeiPancratov](https://github.com/alexeipancratov) |  Linkedin link |
 Michael Francis Jerome Victor | [@Mike-64](https://github.com/Mike-64)| Linkedin link |
 Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link |
-
 
 ## Support
 
