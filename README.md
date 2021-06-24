@@ -40,16 +40,19 @@ Bring transparency to the food supply chain with Hyperledger Fabric.
 - Food (Apples, etc)
     
 ## Possible attributes associated with the Asset
-- Cost
-- Manufacture
-- PackageSize 
-- Barcode
-- Name
-- PlaceOfOrigin
-- ProduceDate
-- ExpirationDate
-- Quanitity
-- Type
+	
+Field  |  Description
+------------- | -------------
+Cost  |  Cost of the product
+Manufacture  |  Name of the manufacture
+PackageSize   |  THe size of the package
+Barcode  |  The barcode
+Name  |  Name of the product
+PlaceOfOrigin  |  Place of Origin
+ProduceDate  |  Date that the product was produced
+ExpirationDate  |  Date that the product will expire
+Quantity  |  Quantity of products produced
+Type  |  Type of the product
 
 ## Possible Smart Contracts for the Asset
 Issue
