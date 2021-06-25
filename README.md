@@ -180,7 +180,7 @@ Get operation returns a given product by its ID. ID should not be empty as well.
 
 GetHistory operation allows to retrieve a given product together with its component (parent) products it is made of. The returned object corresponds to the structure shown on the figure below.
 
-![image](https://user-images.githubusercontent.com/77367605/123478432-71408d80-d5cd-11eb-81d6-4dd436a269c1.png)
+![image]()
 
 
 # Food Supply Chains Details
