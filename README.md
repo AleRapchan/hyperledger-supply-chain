@@ -66,6 +66,69 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 ## Hyperledger Fabric Architecture
 ![Logo](https://alexandrebarros.com/global/hyperledger/Architecture.png?alt=hyperledger-architecture)
 
+## Blockchain Explorer
+Blockchain explorer provides a dashboard for viewing information about transactions, blocks, node logs, statistics, and smart contracts available on the network. Users will be able to query for specific blocks or transactions and view the complete details. Blockchain explorer can also be integrated with any authentication/authorization platforms (commercial/open source) and will provided appropriate functionality based on the privileges available to the user.
+
+```bash
+mkdir explorer
+cd explorer
+
+wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/config.json
+wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/connection-profile/test-network.json -P connection-profile
+wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/docker-compose.yaml
+
+vim docker-compose.yaml
+
+cd fabric-samples/test-network/
+
+
+./network.sh down
+
+./network.sh up createChannel -ca -s couchdb
+
+./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript -ccl javascript
+
+cd ..
+cd ..
+cd explorer
+
+# copy organization folder from the test network
+# we want the criptographic stuff
+# this should run inside explorer directory
+sudo cp -r ../fabric-samples/test-network/organizations/ .
+vim connection-profile/test-network.json
+
+sudo ls organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/
+
+885760d2b14aada616bd20db85d263668634b8b385f825591a516684dfac425d_sk
+
+vi connection-profile/test-network.json
+# Change the KEY
+
+sudo docker network create docker_test
+852cb9532712f64fbd744b2081c5ec41a7ec676be97ad2d8f70130fe033368aa
+
+# Change name to net_test in networks
+sudo vim docker-compose.yaml
+
+sudo docker-compose up
+# To run as a deamon use -d
+# sudo docker-compose up -d
+
+sudo docker network ls
+
+```
+
+Remember to create a firewall rule in your cloud platform before that.
+1. VPC network/ Firewall / Create a firewall rule
+2. Target: All instances
+3. Source: 0.0.0.0/0
+4. Specified protocols and ports: tcp : 8080
+
+These are the default user and password. Change it in your first access:
+- Username: exploreradmin
+- Password: exploreradminpw
+
 # Food Supply Chains Details
 
 ## State Machine
