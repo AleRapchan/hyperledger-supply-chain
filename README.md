@@ -70,51 +70,57 @@ Hyperledger is an open source collaborative effort created to advance cross-indu
 Blockchain explorer provides a dashboard for viewing information about transactions, blocks, node logs, statistics, and smart contracts available on the network. Users will be able to query for specific blocks or transactions and view the complete details. Blockchain explorer can also be integrated with any authentication/authorization platforms (commercial/open source) and will provided appropriate functionality based on the privileges available to the user.
 
 ```bash
+# Create explorer directory
 mkdir explorer
 cd explorer
 
+# Download configuration files
 wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/config.json
 wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/connection-profile/test-network.json -P connection-profile
 wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/docker-compose.yaml
 
+# Change network name to net_test
 vim docker-compose.yaml
 
 cd fabric-samples/test-network/
 
-
+# Certify to clean everything
 ./network.sh down
-
+# Bring up the network with the channels, CA and CouchDB
 ./network.sh up createChannel -ca -s couchdb
-
+# Deploy the Chain Code
 ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript -ccl javascript
 
+# Return to the explorer directory
 cd ..
 cd ..
 cd explorer
 
-# copy organization folder from the test network
-# we want the criptographic stuff
-# this should run inside explorer directory
+# Copy organization folder from the test network
+# We want the criptographic stuff
+# This should run inside explorer directory
 sudo cp -r ../fabric-samples/test-network/organizations/ .
-vim connection-profile/test-network.json
 
+# Create a KEY
 sudo ls organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/
-
 885760d2b14aada616bd20db85d263668634b8b385f825591a516684dfac425d_sk
 
+# Change the KEY in organizations/Org1MSP/adminPrivateKey
 vi connection-profile/test-network.json
-# Change the KEY
 
+# 
 sudo docker network create docker_test
 852cb9532712f64fbd744b2081c5ec41a7ec676be97ad2d8f70130fe033368aa
 
-# Change name to net_test in networks
+# Change name to net_test in networks    <<<<<<<<<<<<<<
 sudo vim docker-compose.yaml
 
+# Start Docker Compose
 sudo docker-compose up
 # To run as a deamon use -d
 # sudo docker-compose up -d
 
+# To view the Docker Networks
 sudo docker network ls
 
 ```
@@ -128,6 +134,7 @@ Remember to create a firewall rule in your cloud platform before that.
 These are the default user and password. Change it in your first access:
 - Username: exploreradmin
 - Password: exploreradminpw
+
 
 # Food Supply Chains Details
 
@@ -493,6 +500,7 @@ For support, email blockchain@alexandrebarros.com or join our Slack channel.
 - Hyperledger Intro: https://hyperledger-fabric.readthedocs.io/en/latest/whatis.html
 - Hyperledger GitHub: https://github.com/hyperledger/fabric
 - Hyperledger Wiki: https://wiki.hyperledger.org/display/fabric
+- Hyperledger Explorer: https://github.com/hyperledger/blockchain-explorer
 - What is Private Data: https://hyperledger-fabric.readthedocs.io/en/release-2.2/private-data/private-data.html
 - Using Private Data in Fabric: https://hyperledger-fabric.readthedocs.io/en/release-2.2/private_data_tutorial.html
 - Whiting your first Chaincode: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html
