@@ -145,30 +145,32 @@ Such functionality would allow retail workers and end customers to track and tra
 
 To implement this in real life, a blockchain-based solution is proposed. Using the enterprise-based blockchain Hyperledger Fabric it is possible to setup many organizations (such as farms, factories, distribution centers, stores) and construct a reliable messaging channel which allows to track any product at any stage from the orchard or sea to the store shelve. One such example is shown on the figure below.
 
-![image](https://user-images.githubusercontent.com/77367605/123478273-376f8700-d5cd-11eb-9b9a-a4e4f13f424d.png)
+![image]()
 
 ## Models
 
 At the first stage of design for such a system is to define the model of the business domain. The central entity in this case is product. Tables and figure below show the abstraction model for a generic product which will be used in the system.
 
-![image](https://user-images.githubusercontent.com/77367605/123478318-481ffd00-d5cd-11eb-927f-3bc8fc46f1c4.png)
+![image]()
 
 ---
 A sample instance of this model is shown on figure below. In this case it is apple jam. It is made of another product which is tracked in our system – apples, which has ID of “456”. Place of origin is Etobicoke, ON, Canada (more specific location could be used as well). Unit quantity inside a single apple jam jar is 300 mg. Is it not part of any batch, so it’s tracked individually. The product has no specific variety, nor any additional miscellaneous information. Previous locations of this apple jam jar are Etobicoke and Brampton. And the current location is Walmart Supercentre - 900 Dufferin St, Toronto, ON. Date of each location is tracked as well.
 
 Based on this information, as well as based on previous product IDs which were used to produce a given product a customer can check the whole supply chain to see the place of origin of products used to produce it. At the same time, a store employees can use this information to troubleshoot supply chain bottlenecks.
 
-![image](https://user-images.githubusercontent.com/77367605/123478354-55d58280-d5cd-11eb-9a32-f602ce602000.png)
+![image]()
 
 ---
 
-Based on the food supply chain shown initially and on the developed models a sample food supply chain is demonstrated on figure below. Initially, apples are picked by the farmer and corresponding product instance is created on the blockchain. Then they get transported to a new location as a whole batch. On this location (e.g., a factory) it gets processed into apple jam. A new product instance should be created to reflect this. The chain is created by saving the ID of the product it is made of (apples with ID “123”). Then the apple jam gets packaged into jars at the same facility and a new product instance is created as a result for each apple jam jar. Apple jam jars then get transported to the store. In the end apple jam is sold to the end customer but it is not required by the system.![image](https://user-images.githubusercontent.com/77367605/123478392-64239e80-d5cd-11eb-99de-13b836259149.png)
+Based on the food supply chain shown initially and on the developed models a sample food supply chain is demonstrated on figure below. Initially, apples are picked by the farmer and corresponding product instance is created on the blockchain. Then they get transported to a new location as a whole batch. On this location (e.g., a factory) it gets processed into apple jam. A new product instance should be created to reflect this. The chain is created by saving the ID of the product it is made of (apples with ID “123”). Then the apple jam gets packaged into jars at the same facility and a new product instance is created as a result for each apple jam jar. Apple jam jars then get transported to the store. In the end apple jam is sold to the end customer but it is not required by the system.
+
+![image]()
 
 ## Modeling contract and transactions
 
 As a result of model creation and product flow analysis the following chaincode operations have been identified as shown in the table below.
 
-![image](https://user-images.githubusercontent.com/77367605/123478415-6ab21600-d5cd-11eb-8220-30521a4a98f9.png)
+![image]()
 
 Create operation is needed to create an instance of a product. A product can be a part of a batch, in which case the batchQuantity will not be null. Besides product object itself it accepts an array of component products which can be empty if there are no other products this product is made of. This operation returns nothing, and a couple of validation checks need to be done to make sure required fields are not empty and are in a valid format.
 
