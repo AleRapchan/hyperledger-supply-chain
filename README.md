@@ -342,6 +342,35 @@ Update the commercial paper instance in the world state
 4. The React UI uses the Node.js application API to interact and submit transactions to the network.
 5. The user interacts with the supply chain application web interface to update and query the blockchain ledger and state.
 
+
+# Governance
+
+## Rules
+Rules are the skeleton of the whole system that defines how business will function. Our system will be built based on the following ruleset.
+- Every organization will run a single endorser and committing peer node to validate transactions.
+- Decisions on whether to allow a new member to join the system will be decided by voting.
+- Which node will become admin will also be decided by voting.
+- The decision that has more than 50% of the votes will be implemented.
+- Rules will be enforced by the system admin.
+- Orderer nodes must only be in odd numbers to establish Raft mechanism.
+- Data once pushed on the ledger will remain on the chain forever to make the data and system more reliable and sound.
+- Any member found acting malicious must be forever removed from the system.
+
+## Policies
+Policies guide decisions in order to follow rules of the system. Our system will have following policies :
+- Every organization has the right to participate to vote.
+- Any member who is a part of a Private Data Collection should not leak the data to the non-member of the collection.
+- Each product that is going to be processed into a different product must be accessible to any member.
+- When shipping, location must be updated.
+
+## Roles
+Roles dictate what a member can and should do or act within the system. Our system will consist of the following roles :-
+Admin:
+- Will organize the voting system and act as the chairperson.
+- Has read access to every channel and Private Data Collection.
+- Will monitor and is responsible for the proper functioning of the system.
+
+
 # Implementation
 
 ## Featured technologies
