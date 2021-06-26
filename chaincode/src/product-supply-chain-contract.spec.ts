@@ -12,6 +12,9 @@ import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
 import winston = require('winston');
 import { Product } from './models/product';
+import { ProductLocationData } from './models/product-location-data';
+import { ProductLocationEntry } from './models/product-location-entry';
+import { describe } from 'mocha';
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -26,6 +29,43 @@ class TestContext implements Context {
      };
 }
 
+const createNewProduct = () => {
+    const product = new Product();
+    product.id = '1003';
+    product.barcode = '1234567890';
+    product.batchQuantity = 1000;
+    product.category = 'Fruit Jams';
+    product.componentProductIds = [];
+    product.expirationDate = '2022-06-24T18:25:43.511Z';
+    product.misc = {};
+    product.name = 'Apple Jam';
+    product.placeOfOrigin = 'Etobicoke, ON, Canada';
+    product.productionDate = '2021-06-24T18:25:43.511Z';
+    product.unitPrice = '$5.00';
+    product.unitQuantity = 300;
+    product.unitQuantityType = 'mg';
+    product.variety = null;
+
+    const locationData = new ProductLocationData();
+    locationData.current = new ProductLocationEntry({
+        arrivalDate: '2021-06-30T18:00:58.511Z',
+        location: 'Walmart Supercentre - 900 Dufferin St, Toronto, ON',
+    });
+    locationData.previous = [
+        new ProductLocationEntry({
+            arrivalDate: '2021-06-24T18:25:43.511Z',
+            location: 'Etobicoke, ON, Canada',
+        }),
+        new ProductLocationEntry({
+            arrivalDate: '2021-06-25T09:05:12.511Z',
+            location: 'Brampton, ON, Canada',
+        }),
+    ];
+    product.locationData = locationData;
+
+    return product;
+};
+
 describe('ProductSupplyChainContract', () => {
 
     let contract: ProductSupplyChainContract;
@@ -34,8 +74,52 @@ describe('ProductSupplyChainContract', () => {
     beforeEach(() => {
         contract = new ProductSupplyChainContract();
         ctx = new TestContext();
-        ctx.stub.getState.withArgs('1001').resolves(Buffer.from('{"value":"product 1001 value"}'));
-        ctx.stub.getState.withArgs('1002').resolves(Buffer.from('{"value":"product 1002 value"}'));
+        ctx.stub.getState.withArgs('1001').resolves(Buffer.from(`{
+            "id": "1001",
+            "barcode": "1234567890",
+            "batchQuantity": 1000,
+            "category": "Fruits",
+            "componentProductIds": [],
+            "expirationDate": "2022-06-24T18:25:43.511Z",
+            "misc": {},
+            "name": "Apples",
+            "placeOfOrigin": "Markham, ON, Canada",
+            "productionDate": "2021-06-24T18:25:43.511Z",
+            "unitPrice": "$5.00",
+            "unitQuantity": 300,
+            "unitQuantityType": "mg",
+            "variety": null,
+            "locationData": {
+                "current": {
+                    "arrivalDate": "2021-06-30T18:00:58.511Z",
+                    "location": "Markham Farm, Marham, ON, Canada"
+                },
+                "previous": []
+            }
+        }`));
+        ctx.stub.getState.withArgs('1002').resolves(Buffer.from(`{
+            "id": "1002",
+            "barcode": "1234567890",
+            "batchQuantity": 1000,
+            "category": "Fruits",
+            "componentProductIds": [],
+            "expirationDate": "2022-06-24T18:25:43.511Z",
+            "misc": {},
+            "name": "Apples",
+            "placeOfOrigin": "Marham, ON, Canada",
+            "productionDate": "2021-06-24T18:25:43.511Z",
+            "unitPrice": "$5.00",
+            "unitQuantity": 300,
+            "unitQuantityType": "mg",
+            "variety": null,
+            "locationData": {
+                "current": {
+                    "arrivalDate": "2021-06-30T18:00:58.511Z",
+                    "location": "Markham Farm, Marham, ON, Canada"
+                },
+                "previous": []
+            }
+        }`));
     });
 
     describe('#productExists', () => {
@@ -53,11 +137,64 @@ describe('ProductSupplyChainContract', () => {
     describe('#createProduct', () => {
 
         it('should create a product', async () => {
-            const product = new Product();
-            product.id = '1003';
+            const product = createNewProduct();
+            console.log(JSON.stringify(product));
             await contract.createProduct(ctx, product);
-            ctx.stub.putState.should.have.been.calledOnceWithExactly('1003', Buffer.from('{"value":"product 1003 value"}'));
+            ctx.stub.putState.should.have.been.calledOnceWith('1003');
         });
 
+        it('should throw an error for a product that already exists', async () => {
+            const product = createNewProduct();
+            product.id = '1001';
+            await contract.createProduct(ctx, product).should.be.rejectedWith(/The product 1001 already exists./);
+        });
+
+        it('should throw an error for a product with missing id', async () => {
+            const product = createNewProduct();
+            product.id = '';
+            await contract.createProduct(ctx, product).should.be.rejectedWith(/The 'id' field is required./);
+        });
+
+        it('should throw an error for a product with missing name', async () => {
+            const product = createNewProduct();
+            product.name = '';
+            await contract.createProduct(ctx, product).should.be.rejectedWith(/The 'name' field is required./);
+        });
+
+    });
+
+    describe('#getProduct', () => {
+
+        it('should return a product', async () => {
+            const expectedProduct = new Product();
+            expectedProduct.id = '1001';
+            expectedProduct.barcode = '1234567890';
+            expectedProduct.batchQuantity = 1000;
+            expectedProduct.category = 'Fruits';
+            expectedProduct.componentProductIds = [];
+            expectedProduct.expirationDate = '2022-06-24T18:25:43.511Z';
+            expectedProduct.misc = {};
+            expectedProduct.name = 'Apples';
+            expectedProduct.placeOfOrigin = 'Markham, ON, Canada';
+            expectedProduct.productionDate = '2021-06-24T18:25:43.511Z';
+            expectedProduct.unitPrice = '$5.00';
+            expectedProduct.unitQuantity = 300;
+            expectedProduct.unitQuantityType = 'mg';
+            expectedProduct.variety = null;
+
+            const locationData = new ProductLocationData();
+            locationData.current = new ProductLocationEntry({
+                arrivalDate: '2021-06-30T18:00:58.511Z',
+                location: 'Markham Farm, Marham, ON, Canada',
+            });
+            locationData.previous = [];
+            expectedProduct.locationData = locationData;
+
+            await contract.getProduct(ctx, '1001').should.eventually.deep.equal(expectedProduct);
+        });
+
+        it('should throw an error for a product that does not exist', async () => {
+            await contract.getProduct(ctx, '1003').should.be.rejectedWith(/The product 1003 does not exist./);
+        });
     });
 });

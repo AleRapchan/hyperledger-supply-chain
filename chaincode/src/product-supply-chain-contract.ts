@@ -18,23 +18,56 @@ export class ProductSupplyChainContract extends Contract {
 
     @Transaction()
     public async createProduct(ctx: Context, product: Product): Promise<void> {
+        const exists: boolean = await this.productExists(ctx, product.id);
+        if (exists) {
+            throw new Error(`The product ${product.id} already exists.`);
+        }
+
+        this.requireField(product.id, 'id');
+        this.requireField(product.name, 'name');
+        this.requireField(product.barcode, 'barcode');
+        this.requireField(product.placeOfOrigin, 'placeOfOrigin');
+        this.requireField(product.productionDate, 'productionDate');
+        this.requireField(product.expirationDate, 'expirationDate');
+        this.requireField(product.unitQuantity, 'unitQuantity');
+        this.requireField(product.unitQuantityType, 'unitQuantityType');
+        this.requireField(product.unitPrice, 'unitPrice');
+        this.requireField(product.category, 'category');
+        this.requireField(product.locationData.current.location, 'locationData.current.location');
+        this.requireField(product.locationData.current.arrivalDate, 'locationData.current.arrivalDate');
+
+        const buffer = Buffer.from(JSON.stringify(product));
+        await ctx.stub.putState(product.id, buffer);
+    }
+
+    private requireField(value: string | number, fieldName: string) {
+        if (!value) {
+            throw new Error(`The '${fieldName}' field is required.`);
+        }
+    }
+
+    @Transaction()
+    public async shipProductTo(ctx: Context, productId: string, newLocation: string, arrivalDate: string): Promise<void> {
         return null;
     }
 
     @Transaction(false)
     @Returns('Product')
     public async getProduct(ctx: Context, productId: string): Promise<Product> {
-        return new Product();
+        const exists: boolean = await this.productExists(ctx, productId);
+        if (!exists) {
+            throw new Error(`The product ${productId} does not exist.`);
+        }
+
+        const data = await ctx.stub.getState(productId);
+        const product = JSON.parse(data.toString()) as Product;
+
+        return product;
     }
 
     @Transaction(false)
     @Returns('ProductHistory')
     public async getProductWithHistory(ctx: Context, productId: string): Promise<ProductWithHistory> {
         return new ProductWithHistory();
-    }
-
-    @Transaction()
-    public async shipProductTo(ctx: Context, productId: string, newLocation: string, arrivalDate: string): Promise<void> {
-        return null;
     }
 }
