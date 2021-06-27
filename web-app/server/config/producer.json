@@ -1,0 +1,9 @@
+{
+    "connection_file": "producerConnection.json",
+    "appAdmin": "producerApp-admin",
+    "appAdminSecret": "producerApp-adminpw",
+    "orgMSPID": "producermsp",
+    "caUrl": "",
+    "userName": "producerAdmin",
+    "gatewayDiscovery": { "enabled": true, "asLocalhost": false }
+}
