@@ -3,6 +3,11 @@ import { Product } from './product';
 
 @FabricObject()
 export class ProductWithHistory extends Product {
+    constructor(product?: Product) {
+        super();
+        Object.assign(this, product);
+    }
+
     @Property()
-    componentProducts: ProductWithHistory[];
+    componentProducts: Product[];
 }

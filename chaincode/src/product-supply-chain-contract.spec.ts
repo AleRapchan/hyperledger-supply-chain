@@ -15,6 +15,7 @@ import { Product } from './models/product';
 import { ProductLocationData } from './models/product-location-data';
 import { ProductLocationEntry } from './models/product-location-entry';
 import { describe } from 'mocha';
+import { ProductWithHistory } from './models/product-with-history';
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -266,6 +267,62 @@ describe('ProductSupplyChainContract', () => {
 
         it('should throw an error for a product that does not exist', async () => {
             await contract.getProduct(ctx, '1003').should.be.rejectedWith(/The product 1003 does not exist./);
+        });
+    });
+
+    describe('#getProductWithHistory', () => {
+        it('should return a product with its previous products', async () => {
+            const rootProductId = '1001';
+            const childProduct1Id = '880';
+            const childProduct2Id = '990';
+
+            const rootProduct = new ProductWithHistory();
+            rootProduct.id = rootProductId;
+            rootProduct.barcode = '1234567890';
+            rootProduct.batchQuantity = 1000;
+            rootProduct.category = 'Fruits';
+            rootProduct.componentProductIds = [];
+            rootProduct.expirationDate = '2022-06-24T18:25:43.511Z';
+            rootProduct.misc = {};
+            rootProduct.name = 'Apples';
+            rootProduct.placeOfOrigin = 'Markham, ON, Canada';
+            rootProduct.productionDate = '2021-06-24T18:25:43.511Z';
+            rootProduct.unitPrice = '$5.00';
+            rootProduct.unitQuantity = 300;
+            rootProduct.unitQuantityType = 'mg';
+            rootProduct.variety = null;
+
+            const locationData = new ProductLocationData();
+            locationData.current = new ProductLocationEntry({
+                arrivalDate: '2021-06-30T18:00:58.511Z',
+                location: 'Markham Farm, Marham, ON, Canada',
+            });
+            locationData.previous = [];
+            rootProduct.locationData = locationData;
+
+            const childProduct1 = new ProductWithHistory();
+            childProduct1.id = childProduct1Id;
+            const childProduct2 = new ProductWithHistory();
+            childProduct2.id = childProduct2Id;
+
+            rootProduct.componentProductIds = [childProduct1Id, childProduct2Id];
+            rootProduct.componentProducts = [childProduct1, childProduct2];
+
+            ctx.stub.getState.withArgs('1001').resolves(Buffer.from(JSON.stringify(rootProduct)));
+            ctx.stub.getState.withArgs('880').resolves(Buffer.from(JSON.stringify(childProduct1)));
+            ctx.stub.getState.withArgs('990').resolves(Buffer.from(JSON.stringify(childProduct2)));
+
+            await contract.getProductWithHistory(ctx, '1001').should.eventually.satisfy((p: ProductWithHistory) => {
+                return p.id === rootProductId &&
+                    p.componentProducts[0] &&
+                    p.componentProducts[0].id === childProduct1Id &&
+                    p.componentProducts[1] &&
+                    p.componentProducts[1].id === childProduct2Id;
+            });
+        });
+
+        it('should throw an error for a product that does not exist', async () => {
+            await contract.getProductWithHistory(ctx, '1003').should.be.rejectedWith(/The product 1003 does not exist./);
         });
     });
 });

@@ -88,6 +88,27 @@ export class ProductSupplyChainContract extends Contract {
     @Transaction(false)
     @Returns('ProductHistory')
     public async getProductWithHistory(ctx: Context, productId: string): Promise<ProductWithHistory> {
-        return new ProductWithHistory();
+        const exists: boolean = await this.productExists(ctx, productId);
+        if (!exists) {
+            throw new Error(`The product ${productId} does not exist.`);
+        }
+
+        const product = await this.readProduct(ctx, productId);
+        const productWithHistory = new ProductWithHistory(product);
+        productWithHistory.componentProducts = [];
+
+        for (const childProductId of product.componentProductIds) {
+            const childProduct = await this.readProduct(ctx, childProductId);
+            productWithHistory.componentProducts.push(childProduct);
+        }
+
+        return productWithHistory;
+    }
+
+    private async readProduct(ctx: Context, productId: string): Promise<Product> {
+        const data = await ctx.stub.getState(productId);
+        const product = JSON.parse(data.toString()) as Product;
+
+        return product;
     }
 }
