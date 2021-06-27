@@ -123,7 +123,6 @@ describe('ProductSupplyChainContract', () => {
     });
 
     describe('#productExists', () => {
-
         it('should return true for a product', async () => {
             await contract.productExists(ctx, '1001').should.eventually.be.true;
         });
@@ -131,15 +130,14 @@ describe('ProductSupplyChainContract', () => {
         it('should return false for a product that does not exist', async () => {
             await contract.productExists(ctx, '1003').should.eventually.be.false;
         });
-
     });
 
     describe('#createProduct', () => {
-
         it('should create a product', async () => {
             const product = createNewProduct();
-            console.log(JSON.stringify(product));
+
             await contract.createProduct(ctx, product);
+
             ctx.stub.putState.should.have.been.calledOnceWith('1003');
         });
 
@@ -160,11 +158,84 @@ describe('ProductSupplyChainContract', () => {
             product.name = '';
             await contract.createProduct(ctx, product).should.be.rejectedWith(/The 'name' field is required./);
         });
+    });
 
+    describe('#shipProductTo', () => {
+        it('should change current product location data to a new one', async () => {
+            // arrange
+            const productId = '1001';
+            const newLocation = 'New Location';
+            const newLocationArrivalDate = '2021-07-01T18:00:58.511Z';
+
+            // act
+            await contract.shipProductTo(ctx, productId, newLocation, newLocationArrivalDate);
+
+            // assert
+            ctx.stub.putState.should.have.been.calledWith(productId, sinon.match((data: Buffer) => {
+                const updatedProduct = JSON.parse(data.toString()) as Product;
+                return updatedProduct.locationData.current.location === newLocation &&
+                    updatedProduct.locationData.current.arrivalDate === newLocationArrivalDate;
+            }));
+        });
+
+        it('should move old location to the "previous" collection', async () => {
+            // arrange
+            const productId = '1001';
+            const prevLocation = 'Markham Farm, Marham, ON, Canada';
+            const prevLocationArrivalDate = '2021-06-30T18:00:58.511Z';
+            const product = new Product();
+            product.id = '1001';
+            product.barcode = '1234567890';
+            product.batchQuantity = 1000;
+            product.category = 'Fruits';
+            product.componentProductIds = [];
+            product.expirationDate = '2022-06-24T18:25:43.511Z';
+            product.misc = {};
+            product.name = 'Apples';
+            product.placeOfOrigin = 'Markham, ON, Canada';
+            product.productionDate = '2021-06-24T18:25:43.511Z';
+            product.unitPrice = '$5.00';
+            product.unitQuantity = 300;
+            product.unitQuantityType = 'mg';
+            product.variety = null;
+
+            const locationData = new ProductLocationData();
+            locationData.current = new ProductLocationEntry({
+                arrivalDate: prevLocationArrivalDate,
+                location: prevLocation,
+            });
+            locationData.previous = [];
+            product.locationData = locationData;
+
+            ctx.stub.getState.withArgs('1001').resolves(Buffer.from(JSON.stringify(product)));
+
+            // act
+            await contract.shipProductTo(ctx, productId, 'New Location', '2021-07-01T18:00:58.511Z');
+
+            // assert
+            ctx.stub.putState.should.have.been.calledWith(productId, sinon.match((data: Buffer) => {
+                const updatedProduct = JSON.parse(data.toString()) as Product;
+                const lastElementIndex = updatedProduct.locationData.previous.length - 1;
+
+                return updatedProduct.locationData.previous[lastElementIndex].arrivalDate === prevLocationArrivalDate
+                    && updatedProduct.locationData.previous[lastElementIndex].location === prevLocation;
+            }));
+        });
+
+        it('should throw an error for a product that does not exist', async () => {
+            await contract.shipProductTo(ctx, '1003', 'New Location', '2021-06-24T18:25:43.511Z').should.be.rejectedWith(/The product 1003 does not exist./);
+        });
+
+        it('should throw an error if new location is empty', async () => {
+            await contract.shipProductTo(ctx, '1001', '', '2021-06-24T18:25:43.511Z').should.be.rejectedWith(/The 'newLocation' field is required./);
+        });
+
+        it('should throw an error if new location arrival date is empty', async () => {
+            await contract.shipProductTo(ctx, '1001', 'New Location', '').should.be.rejectedWith(/The 'arrivalDate' field is required./);
+        });
     });
 
     describe('#getProduct', () => {
-
         it('should return a product', async () => {
             const expectedProduct = new Product();
             expectedProduct.id = '1001';

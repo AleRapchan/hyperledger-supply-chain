@@ -4,6 +4,7 @@
 
 import { Context, Contract, Info, Returns, Transaction } from 'fabric-contract-api';
 import { Product } from './models/product';
+import { ProductLocationEntry } from './models/product-location-entry';
 import { ProductWithHistory } from './models/product-with-history';
 
 @Info({title: 'ProductSupplyChain', description: 'Smart Contract for handling product supply chain.' })
@@ -48,7 +49,26 @@ export class ProductSupplyChainContract extends Contract {
 
     @Transaction()
     public async shipProductTo(ctx: Context, productId: string, newLocation: string, arrivalDate: string): Promise<void> {
-        return null;
+        const exists: boolean = await this.productExists(ctx, productId);
+        if (!exists) {
+            throw new Error(`The product ${productId} does not exist.`);
+        }
+
+        this.requireField(newLocation, 'newLocation');
+        this.requireField(arrivalDate, 'arrivalDate');
+
+        const data = await ctx.stub.getState(productId);
+        const product = JSON.parse(data.toString()) as Product;
+
+        product.locationData.previous.push(new ProductLocationEntry({
+            arrivalDate: product.locationData.current.arrivalDate,
+            location: product.locationData.current.location
+        }));
+        product.locationData.current.arrivalDate = arrivalDate;
+        product.locationData.current.location = newLocation;
+
+        const buffer = Buffer.from(JSON.stringify(product));
+        await ctx.stub.putState(productId, buffer);
     }
 
     @Transaction(false)
