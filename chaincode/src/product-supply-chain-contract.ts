@@ -41,12 +41,6 @@ export class ProductSupplyChainContract extends Contract {
         await ctx.stub.putState(product.id, buffer);
     }
 
-    private requireField(value: string | number, fieldName: string) {
-        if (!value) {
-            throw new Error(`The '${fieldName}' field is required.`);
-        }
-    }
-
     @Transaction()
     public async shipProductTo(ctx: Context, productId: string, newLocation: string, arrivalDate: string): Promise<void> {
         const exists: boolean = await this.productExists(ctx, productId);
@@ -57,8 +51,7 @@ export class ProductSupplyChainContract extends Contract {
         this.requireField(newLocation, 'newLocation');
         this.requireField(arrivalDate, 'arrivalDate');
 
-        const data = await ctx.stub.getState(productId);
-        const product = JSON.parse(data.toString()) as Product;
+        const product = await this.readProduct(ctx, productId);
 
         product.locationData.previous.push(new ProductLocationEntry({
             arrivalDate: product.locationData.current.arrivalDate,
@@ -79,10 +72,7 @@ export class ProductSupplyChainContract extends Contract {
             throw new Error(`The product ${productId} does not exist.`);
         }
 
-        const data = await ctx.stub.getState(productId);
-        const product = JSON.parse(data.toString()) as Product;
-
-        return product;
+        return this.readProduct(ctx, productId);
     }
 
     @Transaction(false)
@@ -110,5 +100,11 @@ export class ProductSupplyChainContract extends Contract {
         const product = JSON.parse(data.toString()) as Product;
 
         return product;
+    }
+
+    private requireField(value: string | number, fieldName: string) {
+        if (!value) {
+            throw new Error(`The '${fieldName}' field is required.`);
+        }
     }
 }
