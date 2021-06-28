@@ -6,6 +6,9 @@ const path = require('path');
 const fs = require('fs');
 let ccpPath;
 let configPath;
+const IDENTITY = 'admin';
+const CHANNEL = 'mychannel';
+const CONTRACT = 'supcc';
 
 exports.connectToNetwork = async function (userName, configObj) {
 
