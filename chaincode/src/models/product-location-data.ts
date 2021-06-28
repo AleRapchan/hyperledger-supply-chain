@@ -1,7 +1,7 @@
-import { Object, Property } from 'fabric-contract-api';
+import { Object as FabricObject, Property } from 'fabric-contract-api';
 import { ProductLocationEntry } from './product-location-entry';
 
-@Object()
+@FabricObject()
 export class ProductLocationData {
     @Property()
     previous: ProductLocationEntry[];

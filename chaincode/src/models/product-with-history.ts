@@ -1,8 +1,13 @@
-import { Object, Property } from 'fabric-contract-api';
+import { Object as FabricObject, Property } from 'fabric-contract-api';
 import { Product } from './product';
 
-@Object()
+@FabricObject()
 export class ProductWithHistory extends Product {
+    constructor(product?: Product) {
+        super();
+        Object.assign(this, product);
+    }
+
     @Property()
-    componentProducts: ProductWithHistory[];
+    componentProducts: Product[];
 }

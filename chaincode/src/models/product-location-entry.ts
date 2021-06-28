@@ -1,7 +1,11 @@
-import { Object, Property } from 'fabric-contract-api';
+import { Object as FabricObject, Property } from 'fabric-contract-api';
 
-@Object()
+@FabricObject()
 export class ProductLocationEntry {
+    constructor(obj?: Partial<ProductLocationEntry>) {
+        Object.assign(this, obj);
+    }
+
     @Property()
     location: string;
 
