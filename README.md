@@ -3,6 +3,8 @@ Food supply-chain is a network to connect participants across the food supply th
 
 ![Logo](https://alexandrebarros.com/global/hyperledger/supply-chain-03.png?alt=hyperledger-supply-chain)
 
+## Index
+
 - [Hyperledger Supply-Chain](#hyperledger-supply-chain)
   * [About the project](#about-the-project)
   * [Top factors considerated for the project](#top-factors-considerated-for-the-project)
