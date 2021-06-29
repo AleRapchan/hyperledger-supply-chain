@@ -5,38 +5,13 @@ Food supply-chain is a network to connect participants across the food supply th
 
 ## Index
 
-- [Hyperledger Supply-Chain](#hyperledger-supply-chain)
-  * [About the project](#about-the-project)
-  * [Top factors considerated for the project](#top-factors-considerated-for-the-project)
-  * [Pillars of Blockchain](#pillars-of-blockchain)
-  * [About Hyperledger](#about-hyperledger)
-  * [Hyperledger Fabric (HLF) Components](#hyperledger-fabric--hlf--components)
-  * [Hyperledger Fabric Architecture](#hyperledger-fabric-architecture)
-  * [Objective](#objective)
-  * [State Machine](#state-machine)
-  * [Physical Asset in the Network](#physical-asset-in-the-network)
-  * [Possible attributes associated with the Asset](#possible-attributes-associated-with-the-asset)
-  * [Possible Smart Contracts for the Asset](#possible-smart-contracts-for-the-asset)
-  * [Instance Description for the Asset](#instance-description-for-the-asset)
-  * [Model definition for the asset](#model-definition-for-the-asset)
-  * [Architecture flow](#architecture-flow)
-  * [Featured technologies](#featured-technologies)
-  * [Prerequisites](#prerequisites)
-    + [Setting up Docker](#setting-up-docker)
-    + [Install Fabric SDK for NodeJS](#install-fabric-sdk-for-nodejs)
-    + [Install Docker Images, Fabric Tools and Fabric Samples](#install-docker-images--fabric-tools-and-fabric-samples)
-    + [Create your first Fabric test network](#create-your-first-fabric-test-network)
-    + [🐧 Create Linux VM and connect GUI remotly](#---create-linux-vm-and-connect-gui-remotly)
-    + [Install IBM Blockchain Platform VS Code extension](#install-ibm-blockchain-platform-vs-code-extension)
-  * [Apache CouchDB and Futon Web GUI](#apache-couchdb-and-futon-web-gui)
-    + [More info:](#more-info-)
-  * [Cloud Environment Setup](#cloud-environment-setup)
-    + [Create key par in Mac](#create-key-par-in-mac)
-  * [Authors](#authors)
-  * [Support](#support)
-  * [Appendix](#appendix)
-  * [Interesting Links](#interesting-links)
-
+  - [About the project](#about-the-project)
+  - [About Hyperledger](#about-hyperledger)
+  - [Featured technologies](#featured-technologies)
+  - [Prerequisites](#prerequisites)
+  - [Authors](#authors)
+  - [Appendix](#appendix)
+ 
 ## About the project
 Food supply chain is a Hyperledger blockchain based solution which solves the tracking and tracing of food products in the supply chain so that any product can be traced back to its roots. Building a food tracking system is an effective way to solve food safety issues. Blockchain is well suited for building product tracking systems because of the inherent immutability and consistency of stored data maintained by encryption and consent mechanisms. We propose to build a tracking system that will unite all suppliers, including food warehouses, food processors, and grocery stores, into one store. Create business correspondence with this chain to enable reliable food tracking without disrupting your food supply chain. Implementation and testing are carried out to evaluate the performance of the proposed monitor. The result is a customizable suite of solutions that can increase food safety and freshness, unlock supply chain efficiencies, minimize waste, enhance your brand’s reputation, and contribute directly to your bottom line. 
 
