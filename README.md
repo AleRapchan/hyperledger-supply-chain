@@ -594,8 +594,10 @@ vim /etc/ssh/sshd_config
 sudo apt update
 sudo apt -y install wget
 hostnamectl
-wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
-sudo dpkg -i nomachine_7.1.3_1_amd64.deb
+#wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
+#sudo dpkg -i nomachine_7.1.3_1_amd64.deb
+wget https://download.nomachine.com/download/7.6/Linux/nomachine_7.6.2_4_amd64.deb
+sudo dpkg -i nomachine_7.6.2_4_amd64.deb
 sudo reboot
 ```
 
