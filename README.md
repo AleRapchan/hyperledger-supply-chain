@@ -147,7 +147,7 @@ Such functionality would allow retail workers and end customers to track and tra
 
 To implement this in real life, a blockchain-based solution is proposed. Using the enterprise-based blockchain Hyperledger Fabric it is possible to setup many organizations (such as farms, factories, distribution centers, stores) and construct a reliable messaging channel which allows to track any product at any stage from the orchard or sea to the store shelve. One such example is shown on the figure below.
 
-![image]()
+![Logo](https://alexandrebarros.com/global/hyperledger/Picture1.png?alt=hyperledger-supply-chain-diagram)
 
 ## Models
 
@@ -251,7 +251,7 @@ Based on this information, as well as based on previous product IDs which were u
 
 Based on the food supply chain shown initially and on the developed models a sample food supply chain is demonstrated on figure below. Initially, apples are picked by the farmer and corresponding product instance is created on the blockchain. Then they get transported to a new location as a whole batch. On this location (e.g., a factory) it gets processed into apple jam. A new product instance should be created to reflect this. The chain is created by saving the ID of the product it is made of (apples with ID “123”). Then the apple jam gets packaged into jars at the same facility and a new product instance is created as a result for each apple jam jar. Apple jam jars then get transported to the store. In the end apple jam is sold to the end customer but it is not required by the system.
 
-![image]()
+![Logo](https://alexandrebarros.com/global/hyperledger/Picture4.png?alt=hyperledger-food-supply-chain-example)
 
 ## Modeling contract and transactions
 
