@@ -155,6 +155,34 @@ At the first stage of design for such a system is to define the model of the bus
 
 ![image]()
 
+```JS
+"product": {
+	"componentProductIds": Array<string>,
+	"id": String,
+	"barcode": String,
+	"name": String,
+	"placeofOrigin": String,
+	"productionDate": String,
+	"expirationDate": String,
+	"unitQuanitity": Number,
+	"unitQuantityType": String,
+	"batchQuantity": Number,
+	"unitPrice": String,
+	"category": String,
+	"variety": String,
+	"misc": Object,
+	"location":
+		"previous": Array<ProductLocationEntry>,
+		"current": ProductLocationEntry
+	}
+}
+
+"productLocationEntry":{
+	"location": String,
+	"arrivalDate": String
+}
+```
+
 ---
 A sample instance of this model is shown on figure below. In this case it is apple jam. It is made of another product which is tracked in our system – apples, which has ID of “456”. Place of origin is Etobicoke, ON, Canada (more specific location could be used as well). Unit quantity inside a single apple jam jar is 300 mg. Is it not part of any batch, so it’s tracked individually. The product has no specific variety, nor any additional miscellaneous information. Previous locations of this apple jam jar are Etobicoke and Brampton. And the current location is Walmart Supercentre - 900 Dufferin St, Toronto, ON. Date of each location is tracked as well.
 
