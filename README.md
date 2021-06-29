@@ -257,7 +257,12 @@ Based on the food supply chain shown initially and on the developed models a sam
 
 As a result of model creation and product flow analysis the following chaincode operations have been identified as shown in the table below.
 
-![image]()
+	|  Input  |  Output  |  Design
+-------  |  -------  |  -------  |  -------
+Create  |  Product object / IDs of component products  |  None  |  •	Check required fields (id, component product IDs, name etc.) •	Check permissions
+ShipTo  |  Product ID / New location  |  None  |  •	Check new location is not empty •	Check permissions
+Get  |  Product ID  |  Product object  |  •	Check product ID is not empty •	Check permissions
+GetHistory  |  Product ID  |  Product history object  |  •	Check product ID is not empty •	Check permissions
 
 Create operation is needed to create an instance of a product. A product can be a part of a batch, in which case the batchQuantity will not be null. Besides product object itself it accepts an array of component products which can be empty if there are no other products this product is made of. This operation returns nothing, and a couple of validation checks need to be done to make sure required fields are not empty and are in a valid format.
 
