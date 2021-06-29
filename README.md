@@ -209,7 +209,43 @@ A sample instance of this model is shown on figure below. In this case it is app
 
 Based on this information, as well as based on previous product IDs which were used to produce a given product a customer can check the whole supply chain to see the place of origin of products used to produce it. At the same time, a store employees can use this information to troubleshoot supply chain bottlenecks.
 
-![image]()
+```JS
+{
+	"product": {
+		"component ProductIds": ["456"],
+		"id": "789",
+		"barcode": "4353453343",
+		"name": "Apple jam",
+		"placeoforigin": "Etobicoke, ON, Canada",
+		"produceDate": "2021-06-24T18:25:43.511",
+		"expirationDate": "2022-06-24T18:25:43.511z",
+		"unitQuanitity": "300"
+		"unitQuantityType": "mg",
+		"batchQuantity": null,
+		"unitPrice": "$5.00"
+		"category": "Fruit jams",
+		"variety": null,
+		"misc": {},
+		"locationData": {
+			"previous":[
+			{
+				"location": "Etobicoke, ON, Canada",
+				"arrivalDate": "2021-06-24T18:25:43.5112"
+			},
+			{
+				"location": "Brampton, ON, Canada",
+				"arrivalDate": "2021-06-25T09:05:12.5112"
+			}
+			],
+			"current": {
+				"location": "Walmart Supercentre 900 Dufferin St, Toronto, ON",
+				"arrivalDate": "2021-06-30T18:00:58.511Z"
+			}
+		}
+	}
+}
+
+```
 
 ---
 
