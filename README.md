@@ -272,6 +272,15 @@ GetHistory operation allows to retrieve a given product together with its compon
 
 ```
 
+Table below shows user roles which can be used for each chaincode operation. The “product creator” role may pertain to users from farms who produce products. The “ShipProductTo” function should be available for “product creator” and “carrier” roles as both should be able to change location of a product from a location to another. The “GetProduct” and “GetProductWithHistory” functions are available for all the roles in the system, including the “store employee” and “customer Web UI”. The latter role is intended to be used by the back end which provides data for the customer Web interface, where users can view product details and supply chain.
+	
+Operation  |  Farm/Walmart roles
+----------  |  ----------
+CreateProduct  |  orgManager
+ShipProductTo  |  orgManager
+GetProduct  |  orgManager / orgEmployee
+GetProductWithHistory  |  orgManager / orgEmployee
+
 
 # Food Supply Chains Details
 
@@ -594,8 +603,7 @@ vim /etc/ssh/sshd_config
 sudo apt update
 sudo apt -y install wget
 hostnamectl
-#wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
-#sudo dpkg -i nomachine_7.1.3_1_amd64.deb
+
 wget https://download.nomachine.com/download/7.6/Linux/nomachine_7.6.2_4_amd64.deb
 sudo dpkg -i nomachine_7.6.2_4_amd64.deb
 sudo reboot
