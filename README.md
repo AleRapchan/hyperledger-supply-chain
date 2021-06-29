@@ -698,6 +698,7 @@ Date  |  Revision  |  Description  |  Author
 - Graphana: https://grafana.com/grafana/dashboards
 - Blockchain Governance Considerations: https://www.blockchain.ae/articles/blockchain-governance-considerations
 - Private Data Collections on Hyperledger Fabric: https://github.com/IBM/private-data-collections-on-fabric
+- Install NoMachine on Ubuntu: https://kifarunix.com/install-nomachine-on-ubuntu/
 
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
