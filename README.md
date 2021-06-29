@@ -699,6 +699,7 @@ Date  |  Revision  |  Description  |  Author
 - Blockchain Governance Considerations: https://www.blockchain.ae/articles/blockchain-governance-considerations
 - Private Data Collections on Hyperledger Fabric: https://github.com/IBM/private-data-collections-on-fabric
 - Install NoMachine on Ubuntu: https://kifarunix.com/install-nomachine-on-ubuntu/
+- Supply chain proof of concept in Hyperledger Fabric: https://github.com/ialberquilla/hlf1.4-supply-chain
 
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
