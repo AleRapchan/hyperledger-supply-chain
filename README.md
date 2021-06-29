@@ -272,7 +272,30 @@ Get operation returns a given product by its ID. ID should not be empty as well.
 
 GetHistory operation allows to retrieve a given product together with its component (parent) products it is made of. The returned object corresponds to the structure shown on the figure below.
 
-![image]()
+```JS
+{
+"product": {
+	"component Products": Array<Product>,
+	"id": String,
+	"barcode": String,
+	"name": String,
+	"placeoforigin": String,
+	"productionDate" String,
+	"expirationDate": String,
+	"unitQuanitity": Number,
+	"unitQuantityType": String,
+	"batchQuantity": Number,
+	"unitPrice": String,
+	"category": String,
+	"variety": String,
+	"misc": Object,
+	"location": {
+		"previous": Array<string>,
+		"current": String
+	}
+}
+
+```
 
 
 # Food Supply Chains Details
