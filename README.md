@@ -679,6 +679,7 @@ Date  |  Revision  |  Description  |  Author
 - Using Private Data in Fabric: https://hyperledger-fabric.readthedocs.io/en/release-2.2/private_data_tutorial.html
 - Whiting your first Chaincode: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html
 - Graphana: https://grafana.com/grafana/dashboards
+- Blockchain Governance Considerations: https://www.blockchain.ae/articles/blockchain-governance-considerations
 
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
