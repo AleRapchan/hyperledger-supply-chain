@@ -601,6 +601,14 @@ sudo dpkg -i nomachine_7.6.2_4_amd64.deb
 sudo reboot
 ```
 
+Remember to create a firewall rule in your cloud platform.
+
+VPC network/ Firewall / Create a firewall rule
+Target: All instances
+Source: 0.0.0.0/0
+Specified protocols and ports: tcp : 4000
+
+
 ### Install IBM Blockchain Platform VS Code extension
  The IBM Blockchain Platform Developer Tools can be installed as a VS Code extension on your local system to make easier your development:
 - [Microsoft Visual Studio Code](https://code.visualstudio.com/)
