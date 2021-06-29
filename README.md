@@ -660,6 +660,13 @@ Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link 
 ## Support
 
 For support, email blockchain@alexandrebarros.com or join our Slack channel.
+	
+## Revisions
+Date  |  Revision  |  Description  |  Author
+15/06/2021  |  0.1  |  First Draft  |  Alexandre Rapchan B. Barros
+19/06/2021  |  0.2  |  Added TypeScript Chain Code  |  Alexei Pancratov
+21/06/2021  |  0.3  |  Fixed issues found during review in Certificates Authorities  |  Michael Francis Jerome Victor
+29/06/2021  |  0.4  |  Added SDK and API  |  Dhruvam Patel
 
 ## Appendix
 - Hyperledger Org: https://www.hyperledger.org/
