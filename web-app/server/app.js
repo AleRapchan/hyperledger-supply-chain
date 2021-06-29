@@ -1,16 +1,21 @@
 'use strict';
 
-import {connectToNetwork, createProduct, shipProductTo, getProduct, getProductWithHistory} from './fabric/network';
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const network = require('./fabric/network');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors);
 
-app.get('/getProduct/:id', connectToNetwork, (req, res) => {
+app.get('/', (req, res) => {
+    res.send('Hello world!');
+});
+
+app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
     const contract = req.contract;
     const productId = req.params.id.toString();
     
@@ -20,7 +25,7 @@ app.get('/getProduct/:id', connectToNetwork, (req, res) => {
     res.json({ result: response });
 });
 
-app.post('/createProduct', connectToNetwork, (req, res) => {
+app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     const contract = req.contract;
     const product = req.body.product;
 
@@ -30,7 +35,7 @@ app.post('/createProduct', connectToNetwork, (req, res) => {
     res.json( {result: response} );
 });
 
-app.get('/getProductWithHistory/:id', connectToNetwork, (req, res) => {
+app.get('/getProductWithHistory/:id', network.connectToNetwork, async (req, res) => {
     const contract = req.contract;
     const productId = req.params.id.toString();
     
@@ -38,4 +43,8 @@ app.get('/getProductWithHistory/:id', connectToNetwork, (req, res) => {
     const response = JSON.parse(result.toString());
     console.log(response);
     res.json({ result: response });
+});
+
+app.listen(3333, () => {
+    console.log('Listening on port 3333');
 });
