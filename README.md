@@ -153,7 +153,28 @@ To implement this in real life, a blockchain-based solution is proposed. Using t
 
 At the first stage of design for such a system is to define the model of the business domain. The central entity in this case is product. Tables and figure below show the abstraction model for a generic product which will be used in the system.
 
-![image]()
+Field  |  Type  |  Required  |  Description
+------------- | ------------- | -------------  |  -------------
+componentProductIds  |  Array<String>  |  Yes  |  Collection of product IDs which are used as components for a given product
+id  |  String  |  Yes  |  A unique identifier of a product in the system
+barcode  |  String  |  Yes  |  Barcode
+name  |  String  |  Yes  |  Product name
+placeOfOrigin  |  String  |  Yes  |  Place of origin
+productionDate  |  String (as ISO 8601 date)  |  Yes  |  Date of product production (e.g., when product was picked, caught, or cooked)
+expirationDate  |  String (as ISO 8601 date)  |  Yes  |  Date when product shelf life expires
+unitQuantity  |  Number  |  Yes  |  Product quantity in one unit (used together with unitQuantityType)
+unitQuantityType  |  String  |  Yes  |  Unit of measure for a product unit (e.g., kg, liter, oz etc.)
+batchQuantity  |  Number  |  No  |  Number of product units in a batch
+unitPrice  |  String  |  Yes  |  Price for a product unit (formatted with currency symbol, e.g., “$10.00”)
+category  |  String  |  Yes  |  Product category
+variety  |  String  |  No  |  Product variety
+misc  |  Object  |  No  |  A dictionary of additional miscellaneous data about a product
+locationData.previous  |  Array <ProductLocationEntry>  |  No  |  Collection of previous product locations
+locationData.current  |  ProductLocationEntry  |  Yes  |  Current product location
+location  |  String  |  Yes  |  Current location of a product (e.g., “Etobicoke, ON, Canada”)
+arrivalDate  |  String (as ISO 8601 date)  |  Yes  |  Arrival date of the product to a given location
+
+
 
 ```JS
 "product": {
