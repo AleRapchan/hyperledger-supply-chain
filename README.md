@@ -602,11 +602,10 @@ sudo reboot
 ```
 
 Remember to create a firewall rule in your cloud platform.
-
-VPC network/ Firewall / Create a firewall rule
-Target: All instances
-Source: 0.0.0.0/0
-Specified protocols and ports: tcp : 4000
+1. VPC network/ Firewall / Create a firewall rule
+2. Target: All instances
+3. Source: 0.0.0.0/0
+4. Specified protocols and ports: tcp : 4000
 
 
 ### Install IBM Blockchain Platform VS Code extension
