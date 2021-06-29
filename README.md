@@ -680,6 +680,7 @@ Date  |  Revision  |  Description  |  Author
 - Whiting your first Chaincode: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html
 - Graphana: https://grafana.com/grafana/dashboards
 - Blockchain Governance Considerations: https://www.blockchain.ae/articles/blockchain-governance-considerations
+- Private Data Collections on Hyperledger Fabric: https://github.com/IBM/private-data-collections-on-fabric
 
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
