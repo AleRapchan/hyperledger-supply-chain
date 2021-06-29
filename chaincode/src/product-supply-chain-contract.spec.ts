@@ -137,7 +137,7 @@ describe('ProductSupplyChainContract', () => {
         it('should create a product', async () => {
             const product = createNewProduct();
 
-            await contract.createProduct(ctx, product);
+            await contract.createProduct(ctx, JSON.stringify(product));
 
             ctx.stub.putState.should.have.been.calledOnceWith('1003');
         });
@@ -145,19 +145,19 @@ describe('ProductSupplyChainContract', () => {
         it('should throw an error for a product that already exists', async () => {
             const product = createNewProduct();
             product.id = '1001';
-            await contract.createProduct(ctx, product).should.be.rejectedWith(/The product 1001 already exists./);
+            await contract.createProduct(ctx, JSON.stringify(product)).should.be.rejectedWith(/The product 1001 already exists./);
         });
 
         it('should throw an error for a product with missing id', async () => {
             const product = createNewProduct();
             product.id = '';
-            await contract.createProduct(ctx, product).should.be.rejectedWith(/The 'id' field is required./);
+            await contract.createProduct(ctx, JSON.stringify(product)).should.be.rejectedWith(/The 'id' field is required./);
         });
 
         it('should throw an error for a product with missing name', async () => {
             const product = createNewProduct();
             product.name = '';
-            await contract.createProduct(ctx, product).should.be.rejectedWith(/The 'name' field is required./);
+            await contract.createProduct(ctx, JSON.stringify(product)).should.be.rejectedWith(/The 'name' field is required./);
         });
     });
 
