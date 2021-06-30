@@ -18,7 +18,9 @@ export class ProductSupplyChainContract extends Contract {
     }
 
     @Transaction()
-    public async createProduct(ctx: Context, product: Product): Promise<void> {
+    public async createProduct(ctx: Context, productJson: string): Promise<void> {
+        const product = JSON.parse(productJson) as Product;
+
         const exists: boolean = await this.productExists(ctx, product.id);
         if (exists) {
             throw new Error(`The product ${product.id} already exists.`);

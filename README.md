@@ -5,38 +5,13 @@ Food supply-chain is a network to connect participants across the food supply th
 
 ## Index
 
-- [Hyperledger Supply-Chain](#hyperledger-supply-chain)
-  * [About the project](#about-the-project)
-  * [Top factors considerated for the project](#top-factors-considerated-for-the-project)
-  * [Pillars of Blockchain](#pillars-of-blockchain)
-  * [About Hyperledger](#about-hyperledger)
-  * [Hyperledger Fabric (HLF) Components](#hyperledger-fabric--hlf--components)
-  * [Hyperledger Fabric Architecture](#hyperledger-fabric-architecture)
-  * [Objective](#objective)
-  * [State Machine](#state-machine)
-  * [Physical Asset in the Network](#physical-asset-in-the-network)
-  * [Possible attributes associated with the Asset](#possible-attributes-associated-with-the-asset)
-  * [Possible Smart Contracts for the Asset](#possible-smart-contracts-for-the-asset)
-  * [Instance Description for the Asset](#instance-description-for-the-asset)
-  * [Model definition for the asset](#model-definition-for-the-asset)
-  * [Architecture flow](#architecture-flow)
-  * [Featured technologies](#featured-technologies)
-  * [Prerequisites](#prerequisites)
-    + [Setting up Docker](#setting-up-docker)
-    + [Install Fabric SDK for NodeJS](#install-fabric-sdk-for-nodejs)
-    + [Install Docker Images, Fabric Tools and Fabric Samples](#install-docker-images--fabric-tools-and-fabric-samples)
-    + [Create your first Fabric test network](#create-your-first-fabric-test-network)
-    + [🐧 Create Linux VM and connect GUI remotly](#---create-linux-vm-and-connect-gui-remotly)
-    + [Install IBM Blockchain Platform VS Code extension](#install-ibm-blockchain-platform-vs-code-extension)
-  * [Apache CouchDB and Futon Web GUI](#apache-couchdb-and-futon-web-gui)
-    + [More info:](#more-info-)
-  * [Cloud Environment Setup](#cloud-environment-setup)
-    + [Create key par in Mac](#create-key-par-in-mac)
-  * [Authors](#authors)
-  * [Support](#support)
-  * [Appendix](#appendix)
-  * [Interesting Links](#interesting-links)
-
+  - [About the project](#about-the-project)
+  - [About Hyperledger](#about-hyperledger)
+  - [Featured technologies](#featured-technologies)
+  - [Prerequisites](#prerequisites)
+  - [Authors](#authors)
+  - [Appendix](#appendix)
+ 
 ## About the project
 Food supply chain is a Hyperledger blockchain based solution which solves the tracking and tracing of food products in the supply chain so that any product can be traced back to its roots. Building a food tracking system is an effective way to solve food safety issues. Blockchain is well suited for building product tracking systems because of the inherent immutability and consistency of stored data maintained by encryption and consent mechanisms. We propose to build a tracking system that will unite all suppliers, including food warehouses, food processors, and grocery stores, into one store. Create business correspondence with this chain to enable reliable food tracking without disrupting your food supply chain. Implementation and testing are carried out to evaluate the performance of the proposed monitor. The result is a customizable suite of solutions that can increase food safety and freshness, unlock supply chain efficiencies, minimize waste, enhance your brand’s reputation, and contribute directly to your bottom line. 
 
@@ -147,32 +122,122 @@ Such functionality would allow retail workers and end customers to track and tra
 
 To implement this in real life, a blockchain-based solution is proposed. Using the enterprise-based blockchain Hyperledger Fabric it is possible to setup many organizations (such as farms, factories, distribution centers, stores) and construct a reliable messaging channel which allows to track any product at any stage from the orchard or sea to the store shelve. One such example is shown on the figure below.
 
-![image]()
+![Logo](https://alexandrebarros.com/global/hyperledger/Picture1.png?alt=hyperledger-supply-chain-diagram)
 
 ## Models
 
 At the first stage of design for such a system is to define the model of the business domain. The central entity in this case is product. Tables and figure below show the abstraction model for a generic product which will be used in the system.
 
-![image]()
+Field  |  Type  |  Required  |  Description
+------------- | ------------- | -------------  |  -------------
+componentProductIds  |  Array<String>  |  Yes  |  Collection of product IDs which are used as components for a given product
+id  |  String  |  Yes  |  A unique identifier of a product in the system
+barcode  |  String  |  Yes  |  Barcode
+name  |  String  |  Yes  |  Product name
+placeOfOrigin  |  String  |  Yes  |  Place of origin
+productionDate  |  String (as ISO 8601 date)  |  Yes  |  Date of product production (e.g., when product was picked, caught, or cooked)
+expirationDate  |  String (as ISO 8601 date)  |  Yes  |  Date when product shelf life expires
+unitQuantity  |  Number  |  Yes  |  Product quantity in one unit (used together with unitQuantityType)
+unitQuantityType  |  String  |  Yes  |  Unit of measure for a product unit (e.g., kg, liter, oz etc.)
+batchQuantity  |  Number  |  No  |  Number of product units in a batch
+unitPrice  |  String  |  Yes  |  Price for a product unit (formatted with currency symbol, e.g., “$10.00”)
+category  |  String  |  Yes  |  Product category
+variety  |  String  |  No  |  Product variety
+misc  |  Object  |  No  |  A dictionary of additional miscellaneous data about a product
+locationData.previous  |  Array <ProductLocationEntry>  |  No  |  Collection of previous product locations
+locationData.current  |  ProductLocationEntry  |  Yes  |  Current product location
+location  |  String  |  Yes  |  Current location of a product (e.g., “Etobicoke, ON, Canada”)
+arrivalDate  |  String (as ISO 8601 date)  |  Yes  |  Arrival date of the product to a given location
+
+
+
+```JS
+"product": {
+	"componentProductIds": Array<string>,
+	"id": String,
+	"barcode": String,
+	"name": String,
+	"placeofOrigin": String,
+	"productionDate": String,
+	"expirationDate": String,
+	"unitQuanitity": Number,
+	"unitQuantityType": String,
+	"batchQuantity": Number,
+	"unitPrice": String,
+	"category": String,
+	"variety": String,
+	"misc": Object,
+	"location":
+		"previous": Array<ProductLocationEntry>,
+		"current": ProductLocationEntry
+	}
+}
+
+"productLocationEntry":{
+	"location": String,
+	"arrivalDate": String
+}
+```
 
 ---
 A sample instance of this model is shown on figure below. In this case it is apple jam. It is made of another product which is tracked in our system – apples, which has ID of “456”. Place of origin is Etobicoke, ON, Canada (more specific location could be used as well). Unit quantity inside a single apple jam jar is 300 mg. Is it not part of any batch, so it’s tracked individually. The product has no specific variety, nor any additional miscellaneous information. Previous locations of this apple jam jar are Etobicoke and Brampton. And the current location is Walmart Supercentre - 900 Dufferin St, Toronto, ON. Date of each location is tracked as well.
 
 Based on this information, as well as based on previous product IDs which were used to produce a given product a customer can check the whole supply chain to see the place of origin of products used to produce it. At the same time, a store employees can use this information to troubleshoot supply chain bottlenecks.
 
-![image]()
+```JS
+{
+	"product": {
+		"component ProductIds": ["456"],
+		"id": "789",
+		"barcode": "4353453343",
+		"name": "Apple jam",
+		"placeoforigin": "Etobicoke, ON, Canada",
+		"produceDate": "2021-06-24T18:25:43.511",
+		"expirationDate": "2022-06-24T18:25:43.511z",
+		"unitQuanitity": "300"
+		"unitQuantityType": "mg",
+		"batchQuantity": null,
+		"unitPrice": "$5.00"
+		"category": "Fruit jams",
+		"variety": null,
+		"misc": {},
+		"locationData": {
+			"previous":[
+			{
+				"location": "Etobicoke, ON, Canada",
+				"arrivalDate": "2021-06-24T18:25:43.5112"
+			},
+			{
+				"location": "Brampton, ON, Canada",
+				"arrivalDate": "2021-06-25T09:05:12.5112"
+			}
+			],
+			"current": {
+				"location": "Walmart Supercentre 900 Dufferin St, Toronto, ON",
+				"arrivalDate": "2021-06-30T18:00:58.511Z"
+			}
+		}
+	}
+}
+
+```
 
 ---
 
 Based on the food supply chain shown initially and on the developed models a sample food supply chain is demonstrated on figure below. Initially, apples are picked by the farmer and corresponding product instance is created on the blockchain. Then they get transported to a new location as a whole batch. On this location (e.g., a factory) it gets processed into apple jam. A new product instance should be created to reflect this. The chain is created by saving the ID of the product it is made of (apples with ID “123”). Then the apple jam gets packaged into jars at the same facility and a new product instance is created as a result for each apple jam jar. Apple jam jars then get transported to the store. In the end apple jam is sold to the end customer but it is not required by the system.
 
-![image]()
+![Logo](https://alexandrebarros.com/global/hyperledger/Picture4.png?alt=hyperledger-food-supply-chain-example)
 
 ## Modeling contract and transactions
 
 As a result of model creation and product flow analysis the following chaincode operations have been identified as shown in the table below.
 
-![image]()
+Method  |  Input  |  Output  |  Design
+-------  |  -------  |  -------  |  -------
+Create  |  Product object / IDs of component products  |  None  |  Check required fields (id, component product IDs, name etc.) / Check permissions
+ShipTo  |  Product ID / New location  |  None  |  Check new location is not empty / Check permissions
+Get  |  Product ID  |  Product object  |  Check product ID is not empty / Check permissions
+GetHistory  |  Product ID  |  Product history object  |  Check product ID is not empty / Check permissions
 
 Create operation is needed to create an instance of a product. A product can be a part of a batch, in which case the batchQuantity will not be null. Besides product object itself it accepts an array of component products which can be empty if there are no other products this product is made of. This operation returns nothing, and a couple of validation checks need to be done to make sure required fields are not empty and are in a valid format.
 
@@ -182,7 +247,39 @@ Get operation returns a given product by its ID. ID should not be empty as well.
 
 GetHistory operation allows to retrieve a given product together with its component (parent) products it is made of. The returned object corresponds to the structure shown on the figure below.
 
-![image]()
+```JS
+{
+"product": {
+	"component Products": Array<Product>,
+	"id": String,
+	"barcode": String,
+	"name": String,
+	"placeoforigin": String,
+	"productionDate" String,
+	"expirationDate": String,
+	"unitQuanitity": Number,
+	"unitQuantityType": String,
+	"batchQuantity": Number,
+	"unitPrice": String,
+	"category": String,
+	"variety": String,
+	"misc": Object,
+	"location": {
+		"previous": Array<string>,
+		"current": String
+	}
+}
+
+```
+
+Table below shows user roles which can be used for each chaincode operation. The “product creator” role may pertain to users from farms who produce products. The “ShipProductTo” function should be available for “product creator” and “carrier” roles as both should be able to change location of a product from a location to another. The “GetProduct” and “GetProductWithHistory” functions are available for all the roles in the system, including the “store employee” and “customer Web UI”. The latter role is intended to be used by the back end which provides data for the customer Web interface, where users can view product details and supply chain.
+	
+Operation  |  Farm/Walmart roles
+----------  |  ----------
+CreateProduct  |  orgManager
+ShipProductTo  |  orgManager
+GetProduct  |  orgManager / orgEmployee
+GetProductWithHistory  |  orgManager / orgEmployee
 
 
 # Food Supply Chains Details
@@ -506,10 +603,18 @@ vim /etc/ssh/sshd_config
 sudo apt update
 sudo apt -y install wget
 hostnamectl
-wget https://download.nomachine.com/download/7.1/Linux/nomachine_7.1.3_1_amd64.deb
-sudo dpkg -i nomachine_7.1.3_1_amd64.deb
+
+wget https://download.nomachine.com/download/7.6/Linux/nomachine_7.6.2_4_amd64.deb
+sudo dpkg -i nomachine_7.6.2_4_amd64.deb
 sudo reboot
 ```
+
+Remember to create a firewall rule in your cloud platform.
+1. VPC network/ Firewall / Create a firewall rule
+2. Target: All instances
+3. Source: 0.0.0.0/0
+4. Specified protocols and ports: tcp : 4000
+
 
 ### Install IBM Blockchain Platform VS Code extension
  The IBM Blockchain Platform Developer Tools can be installed as a VS Code extension on your local system to make easier your development:
@@ -572,6 +677,14 @@ Dhruvam Patel | [@DhruvamPatel](https://github.com/dhruvampatel)| Linkedin link 
 ## Support
 
 For support, email blockchain@alexandrebarros.com or join our Slack channel.
+	
+## Revisions
+Date  |  Revision  |  Description  |  Author
+--------  |  --------  |  --------  |  --------	
+15/06/2021  |  0.1  |  First Draft  |  Alexandre Rapchan B. Barros
+19/06/2021  |  0.2  |  Added TypeScript Chain Code  |  Alexei Pancratov
+21/06/2021  |  0.3  |  Fixed issues found during review in Certificates Authorities  |  Michael Francis Jerome Victor
+29/06/2021  |  0.4  |  Added SDK and API  |  Dhruvam Patel
 
 ## Appendix
 - Hyperledger Org: https://www.hyperledger.org/
@@ -583,6 +696,10 @@ For support, email blockchain@alexandrebarros.com or join our Slack channel.
 - Using Private Data in Fabric: https://hyperledger-fabric.readthedocs.io/en/release-2.2/private_data_tutorial.html
 - Whiting your first Chaincode: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html
 - Graphana: https://grafana.com/grafana/dashboards
+- Blockchain Governance Considerations: https://www.blockchain.ae/articles/blockchain-governance-considerations
+- Private Data Collections on Hyperledger Fabric: https://github.com/IBM/private-data-collections-on-fabric
+- Install NoMachine on Ubuntu: https://kifarunix.com/install-nomachine-on-ubuntu/
+- Supply chain proof of concept in Hyperledger Fabric: https://github.com/ialberquilla/hlf1.4-supply-chain
 
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
