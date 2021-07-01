@@ -8,6 +8,6 @@ export class ProductWithHistory extends Product {
         Object.assign(this, product);
     }
 
-    @Property()
+    @Property('componentProducts', 'Array<Product>')
     componentProducts: Product[];
 }

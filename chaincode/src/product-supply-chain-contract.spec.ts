@@ -16,7 +16,6 @@ import { ProductLocationData } from './models/product-location-data';
 import { ProductLocationEntry } from './models/product-location-entry';
 import { describe } from 'mocha';
 import { ProductWithHistory } from './models/product-with-history';
-import { ORG_EMPLOYEE_ROLE, ORG_MANAGER_ROLE } from './roles';
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -39,7 +38,7 @@ const createNewProduct = () => {
     product.category = 'Fruit Jams';
     product.componentProductIds = [];
     product.expirationDate = '2022-06-24T18:25:43.511Z';
-    product.misc = {};
+    product.misc = JSON.stringify({});
     product.name = 'Apple Jam';
     product.placeOfOrigin = 'Etobicoke, ON, Canada';
     product.productionDate = '2021-06-24T18:25:43.511Z';
@@ -83,7 +82,7 @@ describe('ProductSupplyChainContract', () => {
             "category": "Fruits",
             "componentProductIds": [],
             "expirationDate": "2022-06-24T18:25:43.511Z",
-            "misc": {},
+            "misc": "{}",
             "name": "Apples",
             "placeOfOrigin": "Markham, ON, Canada",
             "productionDate": "2021-06-24T18:25:43.511Z",
@@ -106,7 +105,7 @@ describe('ProductSupplyChainContract', () => {
             "category": "Fruits",
             "componentProductIds": [],
             "expirationDate": "2022-06-24T18:25:43.511Z",
-            "misc": {},
+            "misc": "{}",
             "name": "Apples",
             "placeOfOrigin": "Marham, ON, Canada",
             "productionDate": "2021-06-24T18:25:43.511Z",
@@ -122,8 +121,6 @@ describe('ProductSupplyChainContract', () => {
                 "previous": []
             }
         }`));
-
-        ctx.clientIdentity.getAttributeValue.withArgs('role').returns(ORG_MANAGER_ROLE);
     });
 
     describe('#productExists', () => {
@@ -162,14 +159,6 @@ describe('ProductSupplyChainContract', () => {
             product.name = '';
             await contract.createProduct(ctx, JSON.stringify(product)).should.be.rejectedWith(/The 'name' field is required./);
         });
-
-        it('should throw an error for a user in a role other than "manager"', async () => {
-            ctx.clientIdentity.getAttributeValue.withArgs('role').returns(ORG_EMPLOYEE_ROLE);
-
-            const product = createNewProduct();
-
-            await contract.createProduct(ctx, JSON.stringify(product)).should.be.rejectedWith(/Current user cannot perform this operation./);
-        });
     });
 
     describe('#shipProductTo', () => {
@@ -202,7 +191,7 @@ describe('ProductSupplyChainContract', () => {
             product.category = 'Fruits';
             product.componentProductIds = [];
             product.expirationDate = '2022-06-24T18:25:43.511Z';
-            product.misc = {};
+            product.misc = JSON.stringify({});
             product.name = 'Apples';
             product.placeOfOrigin = 'Markham, ON, Canada';
             product.productionDate = '2021-06-24T18:25:43.511Z';
@@ -245,13 +234,6 @@ describe('ProductSupplyChainContract', () => {
         it('should throw an error if new location arrival date is empty', async () => {
             await contract.shipProductTo(ctx, '1001', 'New Location', '').should.be.rejectedWith(/The 'arrivalDate' field is required./);
         });
-
-        it('should throw an error for a user in a role other than "manager"', async () => {
-            ctx.clientIdentity.getAttributeValue.withArgs('role').returns(ORG_EMPLOYEE_ROLE);
-
-            await contract.shipProductTo(ctx, '1001', 'New Location', '2021-07-01T18:00:58.511Z')
-                .should.be.rejectedWith(/Current user cannot perform this operation./);
-        });
     });
 
     describe('#getProduct', () => {
@@ -263,7 +245,7 @@ describe('ProductSupplyChainContract', () => {
             expectedProduct.category = 'Fruits';
             expectedProduct.componentProductIds = [];
             expectedProduct.expirationDate = '2022-06-24T18:25:43.511Z';
-            expectedProduct.misc = {};
+            expectedProduct.misc = JSON.stringify({});
             expectedProduct.name = 'Apples';
             expectedProduct.placeOfOrigin = 'Markham, ON, Canada';
             expectedProduct.productionDate = '2021-06-24T18:25:43.511Z';
@@ -286,12 +268,6 @@ describe('ProductSupplyChainContract', () => {
         it('should throw an error for a product that does not exist', async () => {
             await contract.getProduct(ctx, '1003').should.be.rejectedWith(/The product 1003 does not exist./);
         });
-
-        it('should throw an error for a user in a role other than "manager" or "employee"', async () => {
-            ctx.clientIdentity.getAttributeValue.withArgs('role').returns('invalidRole');
-
-            await contract.getProduct(ctx, '1001').should.be.rejectedWith(/Current user cannot perform this operation./);
-        });
     });
 
     describe('#getProductWithHistory', () => {
@@ -307,7 +283,7 @@ describe('ProductSupplyChainContract', () => {
             rootProduct.category = 'Fruits';
             rootProduct.componentProductIds = [];
             rootProduct.expirationDate = '2022-06-24T18:25:43.511Z';
-            rootProduct.misc = {};
+            rootProduct.misc = JSON.stringify({});
             rootProduct.name = 'Apples';
             rootProduct.placeOfOrigin = 'Markham, ON, Canada';
             rootProduct.productionDate = '2021-06-24T18:25:43.511Z';
@@ -347,12 +323,6 @@ describe('ProductSupplyChainContract', () => {
 
         it('should throw an error for a product that does not exist', async () => {
             await contract.getProductWithHistory(ctx, '1003').should.be.rejectedWith(/The product 1003 does not exist./);
-        });
-
-        it('should throw an error for a user in a role other than "manager" or "employee"', async () => {
-            ctx.clientIdentity.getAttributeValue.withArgs('role').returns('invalidRole');
-
-            await contract.getProductWithHistory(ctx, '1001').should.be.rejectedWith(/Current user cannot perform this operation./);
         });
     });
 });
