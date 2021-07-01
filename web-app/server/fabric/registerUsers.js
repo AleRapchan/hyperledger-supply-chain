@@ -26,13 +26,6 @@ async function main() {
         const wallet = await Wallets.newFileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 
-        // Check to see if we've already enrolled the user.
-        const userIdentity = await wallet.get('appManager');
-        if (userIdentity) {
-            console.log('An identity for the user "appManager" already exists in the wallet');
-            return;
-        }
-
         // Check to see if we've already enrolled the admin user.
         const adminIdentity = await wallet.get('admin');
         if (!adminIdentity) {
@@ -41,35 +34,47 @@ async function main() {
             return;
         }
 
-        // build a user object for authenticating with the CA
-        const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
-        const adminUser = await provider.getUserContext(adminIdentity, 'admin');
-
-        // Register the user, enroll the user, and import the new identity into the wallet.
-        const secret = await ca.register({
-            affiliation: 'org1.department1',
-            enrollmentID: 'appManager',
-            role: 'manager'
-        }, adminUser);
-        const enrollment = await ca.enroll({
-            enrollmentID: 'appManager',
-            enrollmentSecret: secret
-        });
-        const x509Identity = {
-            credentials: {
-                certificate: enrollment.certificate,
-                privateKey: enrollment.key.toBytes(),
-            },
-            mspId: 'Org1MSP',
-            type: 'X.509',
-        };
-        await wallet.put('appManager', x509Identity);
-        console.log('Successfully registered and enrolled user "appManager" and imported it into the wallet');
+        // register users with CA
+        await registerIdentity(wallet, adminIdentity, ca, 'manager');
+        await registerIdentity(wallet, adminIdentity, ca, 'employee');
 
     } catch (error) {
-        console.error(`Failed to register user "appManager": ${error}`);
+        console.error(error);
         process.exit(1);
     }
 }
 
 main();
+
+async function registerIdentity(wallet, adminIdentity, ca, identity) {
+    // Check to see if we've already enrolled the user.
+    const userIdentity = await wallet.get(identity);
+    if (userIdentity) {
+        console.log(`An identity for the user "${identity}" already exists in the wallet`);
+        return;
+    }
+
+    const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
+    const adminUser = await provider.getUserContext(adminIdentity, 'admin');
+
+    // Register the user, enroll the user, and import the new identity into the wallet.
+    const secret = await ca.register({
+        affiliation: 'org1.department1',
+        enrollmentID: identity,
+        role: 'client'
+    }, adminUser);
+    const enrollment = await ca.enroll({
+        enrollmentID: identity,
+        enrollmentSecret: secret
+    });
+    const x509Identity = {
+        credentials: {
+            certificate: enrollment.certificate,
+            privateKey: enrollment.key.toBytes(),
+        },
+        mspId: 'Org1MSP',
+        type: 'X.509',
+    };
+    await wallet.put(identity, x509Identity);
+    console.log(`Successfully registered and enrolled user "${identity}" and imported it into the wallet`);
+}

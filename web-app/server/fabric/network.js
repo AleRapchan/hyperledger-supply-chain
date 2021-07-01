@@ -3,7 +3,7 @@
 const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
-const IDENTITY = 'appManager';
+const IDENTITY = 'manager';
 const CHANNEL = 'mychannel';
 const CONTRACT = 'supplychain';
 
@@ -20,7 +20,7 @@ exports.connectToNetwork = async function (req, res, next) {
 
     const identity = await wallet.get(IDENTITY);
     if (!identity) {
-        console.log('An identity for the user "appManager" does not exist in the wallet');
+        console.log(`An identity for the user "${IDENTITY}" does not exist in the wallet`);
         console.log('Run the registerManager.js script before retrying');
         return;
     }

@@ -6,7 +6,6 @@ import { Context, Contract, Info, Returns, Transaction } from 'fabric-contract-a
 import { Product } from './models/product';
 import { ProductLocationEntry } from './models/product-location-entry';
 import { ProductWithHistory } from './models/product-with-history';
-import { ORG_EMPLOYEE_ROLE, ORG_MANAGER_ROLE } from './roles';
 
 @Info({title: 'ProductSupplyChain', description: 'Smart Contract for handling product supply chain.' })
 export class ProductSupplyChainContract extends Contract {
@@ -19,8 +18,6 @@ export class ProductSupplyChainContract extends Contract {
 
     @Transaction()
     public async createProduct(ctx: Context, productJson: string): Promise<void> {
-        this.checkRoleIsValid(ctx, ORG_MANAGER_ROLE);
-
         const product = JSON.parse(productJson) as Product;
 
         const exists: boolean = await this.productExists(ctx, product.id);
@@ -47,8 +44,6 @@ export class ProductSupplyChainContract extends Contract {
 
     @Transaction()
     public async shipProductTo(ctx: Context, productId: string, newLocation: string, arrivalDate: string): Promise<void> {
-        this.checkRoleIsValid(ctx, ORG_MANAGER_ROLE);
-
         const exists: boolean = await this.productExists(ctx, productId);
         if (!exists) {
             throw new Error(`The product ${productId} does not exist.`);
@@ -73,8 +68,6 @@ export class ProductSupplyChainContract extends Contract {
     @Transaction(false)
     @Returns('Product')
     public async getProduct(ctx: Context, productId: string): Promise<Product> {
-        this.checkRoleIsValid(ctx, ORG_MANAGER_ROLE, ORG_EMPLOYEE_ROLE);
-
         const exists: boolean = await this.productExists(ctx, productId);
         if (!exists) {
             throw new Error(`The product ${productId} does not exist.`);
@@ -86,8 +79,6 @@ export class ProductSupplyChainContract extends Contract {
     @Transaction(false)
     @Returns('ProductHistory')
     public async getProductWithHistory(ctx: Context, productId: string): Promise<ProductWithHistory> {
-        this.checkRoleIsValid(ctx, ORG_MANAGER_ROLE, ORG_EMPLOYEE_ROLE);
-
         const exists: boolean = await this.productExists(ctx, productId);
         if (!exists) {
             throw new Error(`The product ${productId} does not exist.`);
@@ -115,15 +106,6 @@ export class ProductSupplyChainContract extends Contract {
     private requireField(value: string | number, fieldName: string) {
         if (!value) {
             throw new Error(`The '${fieldName}' field is required.`);
-        }
-    }
-
-    private checkRoleIsValid(ctx: Context, ...allowedRoles: string[]) {
-        const role = ctx.clientIdentity.getAttributeValue('role');
-        const isValidRole = role && allowedRoles.includes(role);
-
-        if (!isValidRole) {
-            throw new Error('Current user cannot perform this operation.');
         }
     }
 }

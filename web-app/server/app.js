@@ -2,12 +2,10 @@
 
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const network = require('./fabric/network');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
@@ -35,7 +33,7 @@ app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
 app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const productJson = req.body.toString();
+        const productJson = JSON.stringify(req.body);
 
         const result = await contract.submitTransaction('createProduct', productJson);
         res.json( {result: result} );
