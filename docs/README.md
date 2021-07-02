@@ -704,5 +704,3 @@ Date  |  Revision  |  Description  |  Author
 ## Interesting Links
 - [IBM Food Trust](https://www.ibm.com/blockchain/solutions/food-trust)
 - [Fair Trade International](https://www.fairtrade.net/)
-
-
