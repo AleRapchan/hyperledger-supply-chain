@@ -5,12 +5,7 @@ const app = express();
 const cors = require('cors');
 const network = require('./fabric/network');
 
-<<<<<<< HEAD
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-=======
 app.use(express.json());
->>>>>>> main
 app.use(cors());
 
 app.get('/', (req, res) => {
@@ -18,10 +13,10 @@ app.get('/', (req, res) => {
     res.send('Hello world!');
 });
 
-app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
+app.get('/getProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const productId = req.params.id.toString();
+        const productId = req.query.id.toString();
         
         const result = await contract.evaluateTransaction('getProduct', productId);
         const response = JSON.parse(result.toString());
@@ -38,20 +33,13 @@ app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
 app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-<<<<<<< HEAD
-        const product = req.body;
-        console.log(product);
-
-        const result = await contract.submitTransaction('createProduct', JSON.stringify(product));
-        const response = JSON.parse(result.toString());
-        console.log(response);
-        res.json( {result: response} );
-=======
         const productJson = JSON.stringify(req.body);
 
+        console.log(productJson);
+
         const result = await contract.submitTransaction('createProduct', productJson);
+        console.log(result.toString());
         res.json( {result: result} );
->>>>>>> main
     } catch(error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         res.status(500).json({
@@ -60,10 +48,10 @@ app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     }
 });
 
-app.get('/getProductWithHistory/:id', network.connectToNetwork, async (req, res) => {
+app.get('/getProductWithHistory', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const productId = req.params.id.toString();
+        const productId = req.query.id.toString();
         
         const result = await contract.evaluateTransaction('getProductWithHistory', productId);
         const response = JSON.parse(result.toString());
@@ -77,10 +65,10 @@ app.get('/getProductWithHistory/:id', network.connectToNetwork, async (req, res)
     }
 });
 
-app.get('/productExists/:id', network.connectToNetwork, async (req, res) => {
+app.get('/productExists', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const productId = req.params.id.toString();
+        const productId = req.query.id.toString();
         console.log(productId);
 
         const result = await contract.evaluateTransaction('productExists', productId);
@@ -97,8 +85,7 @@ app.get('/productExists/:id', network.connectToNetwork, async (req, res) => {
 app.post('/shipProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const shipDetails = req.body.shipDetails;
-        shipDetails = JSON.parse(shipDetails);
+        const shipDetails = req.body;
 
         //Modal of shipDetails
         // shipDetails = {
@@ -108,11 +95,11 @@ app.post('/shipProduct', network.connectToNetwork, async (req, res) => {
         // };
 
         const result = await contract.submitTransaction('shipProductTo', 
-            shipDetails.productId.toString(), 
-            shipDetails.newLocation.toString(),
-            shipDetails.arrivalDate.toString());
+            shipDetails.productId, 
+            shipDetails.newLocation,
+            shipDetails.arrivalDate);
         
-        console.log(result);
+        console.log(result.toString());
         res.json({ status: 'Transaction submitted.', txId: result.toString()});
     } catch(error) {
         console.error(`Failed to evaluate transaction: ${error}`);

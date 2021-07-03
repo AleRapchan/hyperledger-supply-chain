@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const IDENTITY = 'manager';
 const CHANNEL = 'mychannel';
-const CONTRACT = 'supplychain';
+const CONTRACT = 'basic';
 
 exports.connectToNetwork = async function (req, res, next) {
   try {
