@@ -8,7 +8,7 @@ const network = require('./fabric/network');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 
 app.get('/', (req, res) => {
     console.log('GET called');
@@ -35,9 +35,10 @@ app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
 app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
-        const product = req.body.product;
+        const product = req.body;
+        console.log(product);
 
-        const result = await contract.submitTransaction('createProduct', product);
+        const result = await contract.submitTransaction('createProduct', JSON.stringify(product));
         const response = JSON.parse(result.toString());
         console.log(response);
         res.json( {result: response} );
@@ -70,6 +71,7 @@ app.get('/productExists/:id', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
         const productId = req.params.id.toString();
+        console.log(productId);
 
         const result = await contract.evaluateTransaction('productExists', productId);
         console.log(result.toString());

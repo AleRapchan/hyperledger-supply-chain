@@ -1,6 +1,6 @@
-'use strict';
+// 'use strict';
 
-const { Gateway } = require('fabric-network');
+const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
 const IDENTITY = 'admin';
@@ -14,17 +14,17 @@ exports.connectToNetwork = async function (req, res, next) {
     let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), 'wallet');
+    const walletPath = path.join(process.cwd(), 'fabric', 'wallet');
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
     // Check to see if we've already enrolled the user.
     const identity = await wallet.get(IDENTITY);
-    if (!identity) {
-        console.log('An identity for the user "admin" does not exist in the wallet');
-        console.log('Run the enrollAdmin.js application before retrying');
-        return;
-    }
+        if (!identity) {
+            console.log('An identity for the user "admin" does not exist in the wallet');
+            console.log('Run the enrollAdmin.js application before retrying');
+            return;
+        }
 
     // Create a new gateway for connecting to our peer node.
     const gateway = new Gateway();
