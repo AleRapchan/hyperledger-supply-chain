@@ -2,12 +2,15 @@
 
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const network = require('./fabric/network');
 
+<<<<<<< HEAD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+=======
+app.use(express.json());
+>>>>>>> main
 app.use(cors());
 
 app.get('/', (req, res) => {
@@ -35,6 +38,7 @@ app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
 app.post('/createProduct', network.connectToNetwork, async (req, res) => {
     try{
         const contract = req.contract;
+<<<<<<< HEAD
         const product = req.body;
         console.log(product);
 
@@ -42,6 +46,12 @@ app.post('/createProduct', network.connectToNetwork, async (req, res) => {
         const response = JSON.parse(result.toString());
         console.log(response);
         res.json( {result: response} );
+=======
+        const productJson = JSON.stringify(req.body);
+
+        const result = await contract.submitTransaction('createProduct', productJson);
+        res.json( {result: result} );
+>>>>>>> main
     } catch(error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         res.status(500).json({

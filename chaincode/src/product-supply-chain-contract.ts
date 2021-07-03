@@ -9,7 +9,6 @@ import { ProductWithHistory } from './models/product-with-history';
 
 @Info({title: 'ProductSupplyChain', description: 'Smart Contract for handling product supply chain.' })
 export class ProductSupplyChainContract extends Contract {
-
     @Transaction(false)
     @Returns('boolean')
     public async productExists(ctx: Context, productId: string): Promise<boolean> {

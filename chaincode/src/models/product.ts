@@ -6,7 +6,7 @@ export class Product {
     @Property()
     id: string;
 
-    @Property()
+    @Property('componentProductIds', 'Array<string>')
     componentProductIds: string[];
 
     @Property()
@@ -43,8 +43,8 @@ export class Product {
     variety: string;
 
     @Property()
-    misc: object;
+    misc: string;
 
-    @Property()
+    @Property('locationData', 'ProductLocationData')
     locationData: ProductLocationData;
 }

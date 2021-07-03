@@ -3,7 +3,7 @@ import { ProductLocationEntry } from './product-location-entry';
 
 @FabricObject()
 export class ProductLocationData {
-    @Property()
+    @Property('previous', 'Array<ProductLocationEntry>')
     previous: ProductLocationEntry[];
 
     @Property()

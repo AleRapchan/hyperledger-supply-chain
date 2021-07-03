@@ -38,7 +38,7 @@ const createNewProduct = () => {
     product.category = 'Fruit Jams';
     product.componentProductIds = [];
     product.expirationDate = '2022-06-24T18:25:43.511Z';
-    product.misc = {};
+    product.misc = JSON.stringify({});
     product.name = 'Apple Jam';
     product.placeOfOrigin = 'Etobicoke, ON, Canada';
     product.productionDate = '2021-06-24T18:25:43.511Z';
@@ -82,7 +82,7 @@ describe('ProductSupplyChainContract', () => {
             "category": "Fruits",
             "componentProductIds": [],
             "expirationDate": "2022-06-24T18:25:43.511Z",
-            "misc": {},
+            "misc": "{}",
             "name": "Apples",
             "placeOfOrigin": "Markham, ON, Canada",
             "productionDate": "2021-06-24T18:25:43.511Z",
@@ -105,7 +105,7 @@ describe('ProductSupplyChainContract', () => {
             "category": "Fruits",
             "componentProductIds": [],
             "expirationDate": "2022-06-24T18:25:43.511Z",
-            "misc": {},
+            "misc": "{}",
             "name": "Apples",
             "placeOfOrigin": "Marham, ON, Canada",
             "productionDate": "2021-06-24T18:25:43.511Z",
@@ -191,7 +191,7 @@ describe('ProductSupplyChainContract', () => {
             product.category = 'Fruits';
             product.componentProductIds = [];
             product.expirationDate = '2022-06-24T18:25:43.511Z';
-            product.misc = {};
+            product.misc = JSON.stringify({});
             product.name = 'Apples';
             product.placeOfOrigin = 'Markham, ON, Canada';
             product.productionDate = '2021-06-24T18:25:43.511Z';
@@ -245,7 +245,7 @@ describe('ProductSupplyChainContract', () => {
             expectedProduct.category = 'Fruits';
             expectedProduct.componentProductIds = [];
             expectedProduct.expirationDate = '2022-06-24T18:25:43.511Z';
-            expectedProduct.misc = {};
+            expectedProduct.misc = JSON.stringify({});
             expectedProduct.name = 'Apples';
             expectedProduct.placeOfOrigin = 'Markham, ON, Canada';
             expectedProduct.productionDate = '2021-06-24T18:25:43.511Z';
@@ -283,7 +283,7 @@ describe('ProductSupplyChainContract', () => {
             rootProduct.category = 'Fruits';
             rootProduct.componentProductIds = [];
             rootProduct.expirationDate = '2022-06-24T18:25:43.511Z';
-            rootProduct.misc = {};
+            rootProduct.misc = JSON.stringify({});
             rootProduct.name = 'Apples';
             rootProduct.placeOfOrigin = 'Markham, ON, Canada';
             rootProduct.productionDate = '2021-06-24T18:25:43.511Z';
