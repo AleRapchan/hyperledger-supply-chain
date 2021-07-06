@@ -498,7 +498,7 @@ vm:
         # https://docs.docker.com/engine/admin/logging/overview/
         # Note: Set LogConfig using Environment Variables is not supported.
         hostConfig:
-            NetworkMode: docker_test
+            NetworkMode: host
             Dns:
                # - 192.168.0.1
             LogConfig:
