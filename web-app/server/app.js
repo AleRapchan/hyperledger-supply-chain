@@ -13,17 +13,18 @@ app.get('/', (req, res) => {
     res.send('Hello world!');
 });
 
-app.get('/getProduct', network.connectToNetwork, async (req, res) => {
-    try{
+app.get('/getProduct/:id', network.connectToNetwork, async (req, res) => {
+    try {
         const contract = req.contract;
-        const productId = req.query.id.toString();
+        const productId = req.params.id.toString();
         
         const result = await contract.evaluateTransaction('getProduct', productId);
         const response = JSON.parse(result.toString());
-        console.log(response);
+        console.log(response.toString());
         res.json({ result: response });
     } catch(error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
+        console.error('Failed to evaluate transaction:');
+        console.error(error);
         res.status(500).json({
             error: error
         });
@@ -31,7 +32,7 @@ app.get('/getProduct', network.connectToNetwork, async (req, res) => {
 });
 
 app.post('/createProduct', network.connectToNetwork, async (req, res) => {
-    try{
+    try {
         const contract = req.contract;
         const productJson = JSON.stringify(req.body);
 
@@ -41,41 +42,44 @@ app.post('/createProduct', network.connectToNetwork, async (req, res) => {
         console.log(result.toString());
         res.json( {result: result} );
     } catch(error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
+        console.error('Failed to evaluate transaction:');
+        console.error(error);
         res.status(500).json({
             error: error
         });
     }
 });
 
-app.get('/getProductWithHistory', network.connectToNetwork, async (req, res) => {
-    try{
+app.get('/getProductWithHistory/:id', network.connectToNetwork, async (req, res) => {
+    try {
         const contract = req.contract;
-        const productId = req.query.id.toString();
+        const productId = req.params.id.toString();
         
         const result = await contract.evaluateTransaction('getProductWithHistory', productId);
         const response = JSON.parse(result.toString());
         console.log(response);
         res.json({ result: response });
     } catch(error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
+        console.error('Failed to evaluate transaction:');
+        console.error(error);
         res.status(500).json({
             error: error
         });
     }
 });
 
-app.get('/productExists', network.connectToNetwork, async (req, res) => {
-    try{
+app.get('/productExists/:id', network.connectToNetwork, async (req, res) => {
+    try {
         const contract = req.contract;
-        const productId = req.query.id.toString();
+        const productId = req.params.id.toString();
         console.log(productId);
 
         const result = await contract.evaluateTransaction('productExists', productId);
         console.log(result.toString());
         res.json({ exists: result.toString() });
     } catch(error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
+        console.error('Failed to evaluate transaction:');
+        console.error(error);
         res.status(500).json({
             error: error
         });
@@ -83,26 +87,20 @@ app.get('/productExists', network.connectToNetwork, async (req, res) => {
 });
 
 app.post('/shipProduct', network.connectToNetwork, async (req, res) => {
-    try{
+    try {
         const contract = req.contract;
         const shipDetails = req.body;
 
-        //Modal of shipDetails
-        // shipDetails = {
-        //     productId,
-        //     newLocation,
-        //     arrivalDate
-        // };
-
         const result = await contract.submitTransaction('shipProductTo', 
-            shipDetails.productId, 
-            shipDetails.newLocation,
-            shipDetails.arrivalDate);
+            shipDetails.productId.toString(), 
+            shipDetails.newLocation.toString(),
+            shipDetails.arrivalDate.toString());
         
-        console.log(result.toString());
+        console.log(result);
         res.json({ status: 'Transaction submitted.', txId: result.toString()});
     } catch(error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
+        console.error('Failed to evaluate transaction:');
+        console.error(error);
         res.status(500).json({
             error: error
         });
