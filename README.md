@@ -21,8 +21,9 @@ Date  |  Revision  |  Description  |  Author
 --------  |  --------  |  --------  |  --------	
 15/06/2021  |  0.1  |  First Draft  |  Alexandre Rapchan B. Barros
 19/06/2021  |  0.2  |  Added TypeScript Chain Code  |  Alexei Pancratov
-21/06/2021  |  0.3  |  Fixed issues found during review in Certificates Authorities  |  Michael Francis Jerome Victor
+21/06/2021  |  0.3  |  Fixed issues found during review in Certificates Authorities  |  Michael Francis
 29/06/2021  |  0.4  |  Added SDK and API  |  Dhruvam Patel
+09/07/2021  |  0.5  |  Final Review  |  Michael Francis
 
 ## Appendix
 - Hyperledger Org: https://www.hyperledger.org/
