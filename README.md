@@ -4,7 +4,7 @@ Food supply-chain is a network to connect participants across the food supply th
 
 ## Full Documentation
 You can find the full documentation for this project following this link:
-- https://rapchan.gitbook.io/hyperledger-food-supply-chain/ .
+- [Full Documentation](https://rapchan.gitbook.io/hyperledger-food-supply-chain/)
 
 ## Authors
 
